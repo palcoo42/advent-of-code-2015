@@ -42,7 +42,8 @@ impl TextReader {
 
 #[cfg(test)]
 mod tests {
-    use crate::env::get_project_root;
+
+    use crate::env::environment::get_project_root;
 
     use super::*;
 

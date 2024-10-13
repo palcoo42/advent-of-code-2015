@@ -1,6 +1,6 @@
 use std::process::exit;
 
-use common::{env::get_project_root, reader::text_reader::TextReader};
+use common::{env::environment::get_project_root, reader::text_reader::TextReader};
 use example::building::Building;
 
 pub mod example;
