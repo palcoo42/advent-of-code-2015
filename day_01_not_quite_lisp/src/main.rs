@@ -1,6 +1,7 @@
-use std::{path::PathBuf, process::exit};
+use std::process::exit;
 
-use example::reader::Reader;
+use common::{env::get_project_root, reader::text_reader::TextReader};
+use example::building::Building;
 
 pub mod example;
 
@@ -8,18 +9,15 @@ fn main() {
     println!("--- Day 1: Not Quite Lisp ---");
     println!();
 
-    let project_path = std::env::var("CARGO_MANIFEST_DIR")
-        .expect("Environment variable CARGO_MANIFEST_DIR is not defined");
+    let input_file = get_project_root().join("resources").join("input.txt");
 
-    let input_file = PathBuf::from(project_path)
-        .join("resources")
-        .join("input.txt");
-
-    let reader = Reader::new(input_file);
-    let building = reader.read().unwrap_or_else(|err| {
-        println!("{}", err);
+    let reader = TextReader::new(input_file);
+    let lines = reader.read_lines().unwrap_or_else(|e| {
+        println!("Failed to read lines with error '{}'", e);
         exit(1);
     });
+
+    let building = Building::new(lines.first().expect("No lines"));
 
     println!("Part 1: Floor number: {}", building.count());
     println!(
