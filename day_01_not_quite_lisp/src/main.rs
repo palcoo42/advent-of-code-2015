@@ -12,7 +12,7 @@ fn main() {
     let input_file = get_project_root().join("resources").join("input.txt");
 
     let reader = TextReader::new(input_file);
-    let lines = reader.read_lines().unwrap_or_else(|e| {
+    let lines = reader.read_lines(1).unwrap_or_else(|e| {
         println!("Failed to read lines with error '{}'", e);
         exit(1);
     });

@@ -15,14 +15,14 @@ impl TextReader {
         Self { path }
     }
 
-    pub fn read_lines(&self) -> Result<Vec<String>, TextReaderError> {
+    pub fn read_lines(&self, hint: usize) -> Result<Vec<String>, TextReaderError> {
         let file = File::open(self.path.clone()).map_err(|e| {
             TextReaderError::FileOpenError(String::from(self.path.to_str().unwrap()), e)
         })?;
 
         let reader = BufReader::new(file);
 
-        let mut content = Vec::new();
+        let mut content = Vec::with_capacity(hint);
 
         for line in reader.lines() {
             match line {
@@ -60,7 +60,7 @@ mod tests {
         ];
 
         let reader = TextReader::new(input_file);
-        let lines = reader.read_lines().expect("Failed to read lines");
+        let lines = reader.read_lines(5).expect("Failed to read lines");
 
         assert_eq!(lines, expected);
     }
@@ -69,6 +69,6 @@ mod tests {
     fn test_read_lines_not_existing_file() {
         let reader = TextReader::new(PathBuf::from("/tmp/not-existing.txt"));
 
-        assert!(reader.read_lines().is_err());
+        assert!(reader.read_lines(1).is_err());
     }
 }
