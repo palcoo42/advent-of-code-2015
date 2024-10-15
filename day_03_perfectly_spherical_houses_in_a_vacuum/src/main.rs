@@ -22,4 +22,12 @@ fn main() {
         "Part 1: Houses with at least one present: {}",
         houses.at_least_one_present()
     );
+
+    let mut houses = Houses::new();
+    houses.deliver_presents_robo_santa(&instructions);
+
+    println!(
+        "Part 2: Houses with at least one present: {}",
+        houses.at_least_one_present()
+    );
 }

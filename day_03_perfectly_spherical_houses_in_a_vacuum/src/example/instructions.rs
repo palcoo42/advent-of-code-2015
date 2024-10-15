@@ -21,10 +21,6 @@ impl Instructions {
             index: 0,
         }
     }
-
-    pub fn len(&self) -> usize {
-        self.steps.len()
-    }
 }
 
 impl<'a> Iterator for InstructionsIterator<'a> {

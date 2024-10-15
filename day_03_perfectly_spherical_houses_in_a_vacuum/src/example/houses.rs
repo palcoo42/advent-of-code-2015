@@ -1,50 +1,37 @@
 use std::collections::HashMap;
 
-use super::{direction::Direction, house::House, instructions::Instructions};
+use super::{house::House, instructions::Instructions, santa::Santa};
 
 type Visits = u32;
 
 #[derive(Default)]
 pub struct Houses {
     houses: HashMap<House, Visits>,
-    current_x: i32,
-    current_y: i32,
+    santa: Santa,
+    robo_santa: Santa,
 }
 
 impl Houses {
     pub fn new() -> Self {
         Self {
             houses: HashMap::new(),
-            current_x: 0,
-            current_y: 0,
+            santa: Santa { x: 0, y: 0 },
+            robo_santa: Santa { x: 0, y: 0 },
         }
     }
 
     pub fn deliver_presents(&mut self, instructions: &Instructions) {
-        self.deliver_present_at_current_position();
+        // Deliver to the start location
+        self.deliver_present_at_position(House::new(self.santa.x, self.santa.y));
 
-        // Deliver to other locations
+        // Deliver presents
         for direction in instructions.iter() {
-            match direction {
-                Direction::Left => {
-                    self.current_x -= 1;
-                }
-                Direction::Right => {
-                    self.current_x += 1;
-                }
-                Direction::Down => {
-                    self.current_y -= 1;
-                }
-                Direction::Up => {
-                    self.current_y += 1;
-                }
-            }
-            self.deliver_present_at_current_position();
+            self.santa.move_to(direction);
+            self.deliver_present_at_position(House::new(self.santa.x, self.santa.y));
         }
     }
 
-    fn deliver_present_at_current_position(&mut self) {
-        let house = House::new(self.current_x, self.current_y);
+    fn deliver_present_at_position(&mut self, house: House) {
         let visits = self.houses.entry(house).or_insert(0);
 
         // Increment visit
@@ -54,10 +41,34 @@ impl Houses {
     pub fn at_least_one_present(&self) -> usize {
         self.houses.len()
     }
+
+    pub fn deliver_presents_robo_santa(&mut self, instructions: &Instructions) {
+        // Deliver present for two Santa's
+        self.deliver_present_at_position(House::new(self.santa.x, self.santa.y));
+        self.deliver_present_at_position(House::new(self.robo_santa.x, self.robo_santa.y));
+
+        // Track splitting of instructions to Santa and Robo-Santa
+        let mut count = 0;
+
+        // Deliver to other locations
+        for direction in instructions.iter() {
+            count += 1;
+
+            if count % 2 == 1 {
+                self.santa.move_to(direction);
+                self.deliver_present_at_position(House::new(self.santa.x, self.santa.y));
+            } else {
+                self.robo_santa.move_to(direction);
+                self.deliver_present_at_position(House::new(self.robo_santa.x, self.robo_santa.y));
+            }
+        }
+    }
 }
 
 #[cfg(test)]
 mod tests {
+    use crate::example::direction::Direction;
+
     use super::*;
 
     #[test]
@@ -125,6 +136,48 @@ mod tests {
         {
             let mut houses = Houses::new();
             houses.deliver_presents(instructions);
+
+            assert_eq!(
+                houses.at_least_one_present(),
+                expected_at_least_one_presents,
+                "instructions: {:?}",
+                instructions
+            );
+        }
+    }
+
+    #[test]
+    fn test_deliver_presents_robo_santa() {
+        let instructions_array = [
+            Instructions::new(vec![Direction::Up, Direction::Down]),
+            Instructions::new(vec![
+                Direction::Up,
+                Direction::Right,
+                Direction::Down,
+                Direction::Left,
+            ]),
+            Instructions::new(vec![
+                Direction::Up,
+                Direction::Down,
+                Direction::Up,
+                Direction::Down,
+                Direction::Up,
+                Direction::Down,
+                Direction::Up,
+                Direction::Down,
+                Direction::Up,
+                Direction::Down,
+            ]),
+        ];
+
+        let expected_at_least_one_presents_array = [3, 3, 11];
+
+        for (instructions, expected_at_least_one_presents) in instructions_array
+            .iter()
+            .zip(expected_at_least_one_presents_array)
+        {
+            let mut houses = Houses::new();
+            houses.deliver_presents_robo_santa(instructions);
 
             assert_eq!(
                 houses.at_least_one_present(),
