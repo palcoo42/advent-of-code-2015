@@ -18,5 +18,6 @@ fn main() {
         exit(1)
     });
 
-    println!("Part 1: Nice words: {}", words.count_nice_words());
+    println!("Part 1: Nice  words: {}", words.count_nice_words());
+    println!("Part 2: Nicer words: {}", words.count_nicer_words());
 }

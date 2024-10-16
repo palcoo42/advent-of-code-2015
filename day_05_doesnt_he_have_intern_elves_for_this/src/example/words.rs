@@ -12,4 +12,11 @@ impl Words {
     pub fn count_nice_words(&self) -> usize {
         self.words.iter().filter(|word| Word::is_nice(word)).count()
     }
+
+    pub fn count_nicer_words(&self) -> usize {
+        self.words
+            .iter()
+            .filter(|word| Word::is_nicer(word))
+            .count()
+    }
 }

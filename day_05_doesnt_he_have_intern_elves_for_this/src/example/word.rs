@@ -41,6 +41,40 @@ impl Word {
 
         false
     }
+
+    pub fn is_nicer(word: &str) -> bool {
+        Word::contains_a_pair_of_two_letters(word) && Word::contains_repeating_letter(word)
+    }
+
+    fn contains_a_pair_of_two_letters(word: &str) -> bool {
+        for i in 0..word.len() {
+            if i + 2 >= word.len() {
+                return false;
+            }
+
+            let letters = &word[i..i + 2];
+            let rest = &word[i + 2..];
+
+            if rest.contains(letters) {
+                return true;
+            }
+        }
+
+        false
+    }
+
+    fn contains_repeating_letter(word: &str) -> bool {
+        for i in 0..word.len() {
+            if i + 2 >= word.len() {
+                return false;
+            }
+            if word[i..i + 1] == word[i + 2..i + 3] {
+                return true;
+            }
+        }
+
+        false
+    }
 }
 
 #[cfg(test)]
@@ -94,5 +128,33 @@ mod tests {
         assert!(!Word::has_forbidden_patterns("a"));
         assert!(!Word::has_forbidden_patterns("aa"));
         assert!(!Word::has_forbidden_patterns("aaa"));
+    }
+
+    #[test]
+    fn test_contains_a_pair_of_two_letters() {
+        assert!(Word::contains_a_pair_of_two_letters("xyxy"));
+        assert!(Word::contains_a_pair_of_two_letters("aabcdefgaa"));
+
+        assert!(!Word::contains_a_pair_of_two_letters("aaa"));
+        assert!(!Word::contains_a_pair_of_two_letters("baaa"));
+    }
+
+    #[test]
+    fn test_contains_repeating_letter() {
+        assert!(Word::contains_repeating_letter("xyx"));
+        assert!(Word::contains_repeating_letter("abcdefeghi"));
+        assert!(Word::contains_repeating_letter("aaa"));
+
+        assert!(!Word::contains_repeating_letter("abc"));
+        assert!(!Word::contains_repeating_letter("abba"));
+    }
+
+    #[test]
+    fn test_is_nicer() {
+        assert!(Word::is_nicer("qjhvhtzxzqqjkmpb"));
+        assert!(Word::is_nicer("xxyxx"));
+
+        assert!(!Word::is_nicer("uurcxstgmygtbstg"));
+        assert!(!Word::is_nicer("ieodomkazucvgmuy"));
     }
 }
