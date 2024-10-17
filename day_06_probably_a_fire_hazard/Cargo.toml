@@ -1,0 +1,9 @@
+[package]
+name = "day_06_probably_a_fire_hazard"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+common ={ path = "../common" }
+once_cell = { version = "1.20.2" }
+regex = { version = "1.11.0" }
