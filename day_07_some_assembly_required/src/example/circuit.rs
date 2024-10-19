@@ -32,6 +32,8 @@ impl Circuit {
     }
 
     pub fn process(&mut self, instructions: &Instructions) {
+        self.variables.clear();
+
         let mut pending = instructions.data.iter().cloned().collect::<VecDeque<_>>();
 
         while let Some(instruction) = pending.pop_back() {
