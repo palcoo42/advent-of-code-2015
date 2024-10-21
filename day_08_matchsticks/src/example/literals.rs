@@ -12,6 +12,10 @@ impl Literals {
     pub fn diff(&self) -> usize {
         self.data.iter().map(|literal| literal.diff()).sum()
     }
+
+    pub fn diff_encoded(&self) -> usize {
+        self.data.iter().map(|literal| literal.diff_encoded()).sum()
+    }
 }
 
 #[cfg(test)]
@@ -32,8 +36,14 @@ mod tests {
     }
 
     #[test]
-    fn test_diff_simple() {
+    fn test_diff_sample() {
         let literals = read_input_from_file("input_sample.txt");
         assert_eq!(literals.diff(), 252);
+    }
+
+    #[test]
+    fn test_diff_encoded_sample() {
+        let literals = read_input_from_file("input_sample.txt");
+        assert_eq!(literals.diff_encoded(), 374);
     }
 }

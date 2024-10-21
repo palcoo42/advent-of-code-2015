@@ -18,5 +18,6 @@ fn main() {
         exit(1);
     });
 
-    println!("Part 1: Difference: {}", literals.diff());
+    println!("Part 1: Difference        : {}", literals.diff());
+    println!("Part 2: Difference encoded: {}", literals.diff_encoded());
 }

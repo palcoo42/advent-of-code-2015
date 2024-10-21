@@ -14,6 +14,11 @@ impl Literal {
         self.code_len() - self.memory_len()
     }
 
+    pub fn diff_encoded(&self) -> usize {
+        // Note: encoded_len > code_len
+        self.encoded_len() - self.code_len()
+    }
+
     fn code_len(&self) -> usize {
         self.value.len()
     }
@@ -56,6 +61,27 @@ impl Literal {
 
         count
     }
+
+    fn encoded_len(&self) -> usize {
+        let data = self.value.chars().collect::<Vec<_>>();
+        let mut encoded = String::with_capacity(2 * data.len());
+
+        encoded.push('"');
+
+        for c in data.iter() {
+            let enc = match c {
+                '"' => "\\\"",
+                '\\' => "\\\\",
+                c => &c.to_string(),
+            };
+
+            encoded.push_str(enc);
+        }
+
+        encoded.push('"');
+
+        encoded.len()
+    }
 }
 
 #[cfg(test)]
@@ -71,5 +97,16 @@ mod tests {
         assert_eq!(3, Literal::new(r#""daz\\zyyxddpwk""#).diff());
         assert_eq!(4, Literal::new(r#""g\"t\\o""#).diff());
         assert_eq!(4, Literal::new(r#""nxzo\"hf\\xp""#).diff());
+    }
+
+    #[test]
+    fn test_diff_encoded() {
+        assert_eq!(4, Literal::new(r#""""#).diff_encoded());
+        assert_eq!(4, Literal::new(r#""abc""#).diff_encoded());
+        assert_eq!(6, Literal::new(r#""aaa\"aaa""#).diff_encoded());
+        assert_eq!(5, Literal::new(r#""\x27""#).diff_encoded());
+        assert_eq!(6, Literal::new(r#""daz\\zyyxddpwk""#).diff_encoded());
+        assert_eq!(8, Literal::new(r#""g\"t\\o""#).diff_encoded());
+        assert_eq!(8, Literal::new(r#""nxzo\"hf\\xp""#).diff_encoded());
     }
 }
