@@ -10,4 +10,8 @@ fn main() {
         "Part 1: Length of Look-And-Say: {}",
         LookAndSay::translate_multiple_times("1321131112", 40).len()
     );
+    println!(
+        "Part 2: Length of Look-And-Say: {}",
+        LookAndSay::translate_multiple_times("1321131112", 50).len()
+    );
 }
