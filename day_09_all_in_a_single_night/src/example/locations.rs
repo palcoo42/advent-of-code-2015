@@ -41,6 +41,20 @@ impl Locations {
             .unwrap_or_else(|| panic!("Failed to find shortest distance"))
     }
 
+    pub fn find_longest_path(&self) -> u32 {
+        // Find all permutations and count the distances
+        let cities = self.cities.keys().collect::<HashSet<_>>();
+        let permutations = cities.iter().permutations(self.cities.len());
+
+        permutations
+            .map(|p| {
+                let cities = p.iter().map(|city| city.name.as_str()).collect::<Vec<_>>();
+                self.find_distance(&cities)
+            })
+            .max()
+            .unwrap_or_else(|| panic!("Failed to find longest distance"))
+    }
+
     fn find_distance(&self, cities: &[&str]) -> u32 {
         // Create a pairs of cities to form the road
         let pairs = (0..cities.len() - 1)
@@ -85,6 +99,12 @@ mod tests {
     fn test_find_shortest_path() {
         let locations = create_locations();
         assert_eq!(locations.find_shortest_path(), 605);
+    }
+
+    #[test]
+    fn test_find_longest_path() {
+        let locations = create_locations();
+        assert_eq!(locations.find_longest_path(), 982);
     }
 
     #[test]

@@ -19,4 +19,5 @@ fn main() {
     });
 
     println!("Part 1: Shortest path: {}", locations.find_shortest_path());
+    println!("Part 2: Longest path : {}", locations.find_longest_path());
 }
