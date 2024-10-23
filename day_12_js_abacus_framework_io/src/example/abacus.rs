@@ -1,7 +1,12 @@
 use std::{fs::File, io::BufReader, path::Path, str::FromStr};
 
 use common::reader::text_reader_error::TextReaderError;
-use serde_json::{Map, Number, Value};
+use serde_json::Value;
+
+use super::{
+    calculator::Calculator, calculator_complex::CalculatorComplex,
+    calculator_simple::CalculatorSimple,
+};
 
 pub struct Abacus {
     value: Value,
@@ -36,36 +41,12 @@ impl Abacus {
         Ok(Self { value })
     }
 
-    pub fn sum_of_all_numbers(&self) -> i64 {
-        Self::count_json_value(&self.value)
+    pub fn sum_simple(&self) -> i64 {
+        CalculatorSimple::count(&self.value)
     }
 
-    fn count_json_value(value: &Value) -> i64 {
-        match value {
-            Value::Null => 0,
-            Value::Bool(_) => 0,
-            Value::Number(number) => Self::count_json_number(number),
-            Value::String(_) => 0,
-            Value::Array(values) => Self::count_json_array(values),
-            Value::Object(objects) => Self::count_json_object(objects),
-        }
-    }
-
-    fn count_json_number(number: &Number) -> i64 {
-        number
-            .as_i64()
-            .unwrap_or_else(|| panic!("Failed to convert number '{}' to i64", number))
-    }
-
-    fn count_json_array(values: &[Value]) -> i64 {
-        values.iter().map(Self::count_json_value).sum()
-    }
-
-    fn count_json_object(objects: &Map<String, Value>) -> i64 {
-        objects
-            .iter()
-            .map(|(_, value)| Self::count_json_value(value))
-            .sum()
+    pub fn sum_complex(&self) -> i64 {
+        CalculatorComplex::count(&self.value)
     }
 }
 
@@ -74,43 +55,43 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_sum_of_all_numbers() {
+    fn test_sum_simple() {
+        assert_eq!(Abacus::from_str(r#"[1,2,3]"#).unwrap().sum_simple(), 6);
         assert_eq!(
-            Abacus::from_str(r#"[1,2,3]"#).unwrap().sum_of_all_numbers(),
-            6
-        );
-        assert_eq!(
-            Abacus::from_str(r#"{"a":2,"b":4}"#)
-                .unwrap()
-                .sum_of_all_numbers(),
+            Abacus::from_str(r#"{"a":2,"b":4}"#).unwrap().sum_simple(),
             6
         );
 
-        assert_eq!(
-            Abacus::from_str(r#"[[[3]]]"#).unwrap().sum_of_all_numbers(),
-            3
-        );
+        assert_eq!(Abacus::from_str(r#"[[[3]]]"#).unwrap().sum_simple(), 3);
         assert_eq!(
             Abacus::from_str(r#"{"a":{"b":4},"c":-1}"#)
                 .unwrap()
-                .sum_of_all_numbers(),
+                .sum_simple(),
             3
         );
 
-        assert_eq!(
-            Abacus::from_str(r#"{"a":[-1,1]}"#)
-                .unwrap()
-                .sum_of_all_numbers(),
-            0
-        );
-        assert_eq!(
-            Abacus::from_str(r#"[-1,{"a":1}]"#)
-                .unwrap()
-                .sum_of_all_numbers(),
-            0
-        );
+        assert_eq!(Abacus::from_str(r#"{"a":[-1,1]}"#).unwrap().sum_simple(), 0);
+        assert_eq!(Abacus::from_str(r#"[-1,{"a":1}]"#).unwrap().sum_simple(), 0);
 
-        assert_eq!(Abacus::from_str(r#"[]"#).unwrap().sum_of_all_numbers(), 0);
-        assert_eq!(Abacus::from_str(r#"{}"#).unwrap().sum_of_all_numbers(), 0);
+        assert_eq!(Abacus::from_str(r#"[]"#).unwrap().sum_simple(), 0);
+        assert_eq!(Abacus::from_str(r#"{}"#).unwrap().sum_simple(), 0);
+    }
+
+    #[test]
+    fn test_sum_complex() {
+        assert_eq!(Abacus::from_str(r#"[1,2,3]"#).unwrap().sum_complex(), 6);
+        assert_eq!(
+            Abacus::from_str(r#"[1,{"c":"red","b":2},3]"#)
+                .unwrap()
+                .sum_complex(),
+            4
+        );
+        assert_eq!(
+            Abacus::from_str(r#"{"d":"red","e":[1,2,3,4],"f":5}"#)
+                .unwrap()
+                .sum_complex(),
+            0
+        );
+        assert_eq!(Abacus::from_str(r#"[1,"red",5]"#).unwrap().sum_complex(), 6);
     }
 }

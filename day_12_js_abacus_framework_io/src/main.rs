@@ -15,8 +15,6 @@ fn main() {
         exit(1);
     });
 
-    println!(
-        "Part 1: Sum of all numbers: {}",
-        abacus.sum_of_all_numbers()
-    );
+    println!("Part 1: Sum of all numbers: {}", abacus.sum_simple());
+    println!("Part 2: Sum of all numbers: {}", abacus.sum_complex());
 }
