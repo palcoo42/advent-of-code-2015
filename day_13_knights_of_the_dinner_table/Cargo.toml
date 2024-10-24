@@ -1,0 +1,10 @@
+[package]
+name = "day_13_knights_of_the_dinner_table"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+common = { path = "../common" }
+iter_tools = { version = "0.21.*" }
+once_cell = { version = "1.20.*" }
+regex = { version = "1.11.*" }
