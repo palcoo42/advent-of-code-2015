@@ -36,7 +36,11 @@ fn main() {
     let computer = Computer::new(&aunts);
 
     println!(
-        "Part 1: Number of the Sue: {}",
+        "Part 1: Number of the Sue     : {}",
         computer.find_sue(&tape).unwrap().id()
+    );
+    println!(
+        "Part 2: Number of the real Sue: {}",
+        computer.find_real_sue(&tape).unwrap().id()
     );
 }

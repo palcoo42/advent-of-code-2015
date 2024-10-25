@@ -13,12 +13,21 @@ impl<'a> Computer<'a> {
         let sues = self
             .aunts
             .iter()
-            .filter(|&sue| {
-                sue.iter().all(|(item, count)| match tape.get(item) {
-                    Some(c) => c == *count,
-                    None => false,
-                })
-            })
+            .filter(|&sue| sue.is_sue(tape))
+            .collect::<Vec<_>>();
+
+        if sues.len() > 1 {
+            panic!("Too many sues found '{}'", sues.len());
+        }
+
+        Some(sues[0])
+    }
+
+    pub fn find_real_sue(&self, tape: &Tape) -> Option<&Sue> {
+        let sues = self
+            .aunts
+            .iter()
+            .filter(|&sue| sue.is_real_sue(tape))
             .collect::<Vec<_>>();
 
         if sues.len() > 1 {
