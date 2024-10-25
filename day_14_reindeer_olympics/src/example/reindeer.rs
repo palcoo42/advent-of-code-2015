@@ -10,6 +10,7 @@ pub struct Reindeer {
     fly_speed: FlySpeed,
     fly_duration: FlyDuration,
     rest_duration: RestDuration,
+    points: u32,
 }
 
 impl Reindeer {
@@ -24,6 +25,7 @@ impl Reindeer {
             fly_speed,
             fly_duration,
             rest_duration,
+            points: 0,
         }
     }
 
@@ -52,6 +54,18 @@ impl Reindeer {
         //                  distance traveled in last round
         rounds * self.fly_duration * self.fly_speed + min(delta, self.fly_duration) * self.fly_speed
     }
+
+    pub fn reset_points(&mut self) {
+        self.points = 0;
+    }
+
+    pub fn points(&self) -> u32 {
+        self.points
+    }
+
+    pub fn award_point(&mut self) {
+        self.points += 1;
+    }
 }
 
 #[cfg(test)]
@@ -68,6 +82,7 @@ mod tests {
         assert_eq!(comet.distance(11), 140);
         assert_eq!(comet.distance(12), 140);
         assert_eq!(comet.distance(138), 154);
+        assert_eq!(comet.distance(139), 168);
         assert_eq!(comet.distance(174), 280);
         assert_eq!(comet.distance(1000), 1120);
 
@@ -76,6 +91,7 @@ mod tests {
         assert_eq!(dancer.distance(11), 176);
         assert_eq!(dancer.distance(12), 176);
         assert_eq!(dancer.distance(138), 176);
+        assert_eq!(dancer.distance(139), 176);
         assert_eq!(dancer.distance(174), 192);
         assert_eq!(dancer.distance(1000), 1056);
     }
