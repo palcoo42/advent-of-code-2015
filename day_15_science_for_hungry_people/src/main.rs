@@ -19,5 +19,12 @@ fn main() {
         exit(1);
     });
 
-    println!("Part 1: Highest score: {}", recipe.highest_score());
+    println!(
+        "Part 1: Highest score                  : {}",
+        recipe.highest_score()
+    );
+    println!(
+        "Part 2: Highest score with 500 calories: {}",
+        recipe.highest_score_with_calories(500)
+    );
 }
