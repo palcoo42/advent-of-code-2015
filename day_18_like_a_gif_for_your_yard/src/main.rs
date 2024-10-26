@@ -21,4 +21,17 @@ fn main() {
 
     grid.steps(100);
     println!("Part 1: Number of lights on: {}", grid.lights_on_count());
+
+    grid = Reader::read_grid(&input_file).unwrap_or_else(|err| {
+        eprintln!(
+            "Failed to read file '{}' with error '{}'",
+            input_file.to_str().unwrap(),
+            err
+        );
+        exit(1);
+    });
+
+    grid.set_lights_stuck();
+    grid.steps(100);
+    println!("Part 2: Number of lights on: {}", grid.lights_on_count());
 }

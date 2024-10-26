@@ -4,6 +4,7 @@ pub struct Grid {
     x: usize,
     y: usize,
     lights: Vec<Vec<Light>>,
+    lights_stuck: bool, // Part 2
 }
 
 impl Grid {
@@ -13,13 +14,10 @@ impl Grid {
         for line in puzzle {
             let row = line
                 .chars()
-                .map(|c| {
-                    let light = match c {
-                        '.' => Light::Off,
-                        '#' => Light::On,
-                        _ => panic!("Invalid character '{}'", c),
-                    };
-                    light
+                .map(|c| match c {
+                    '.' => Light::Off,
+                    '#' => Light::On,
+                    _ => panic!("Invalid character '{}'", c),
                 })
                 .collect::<Vec<_>>();
 
@@ -30,7 +28,12 @@ impl Grid {
             x: lights.len(),
             y: lights.first().unwrap().len(),
             lights,
+            lights_stuck: false,
         }
+    }
+
+    pub fn set_lights_stuck(&mut self) {
+        self.lights_stuck = true;
     }
 
     pub fn lights_on_count(&self) -> usize {
@@ -66,6 +69,11 @@ impl Grid {
         // Now apply changes to the grid
         for i in 0..self.x {
             for j in 0..self.y {
+                // Skip stuck lights - execute this only if 'lights stuck' is active
+                if self.lights_stuck && self.is_light_stuck(i, j) {
+                    continue;
+                }
+
                 let light = self.lights.get_mut(i).unwrap().get_mut(j).unwrap();
                 let (_count_off, count_on) = *counts.get(i).unwrap().get(j).unwrap();
 
@@ -122,6 +130,14 @@ impl Grid {
 
         (off, on)
     }
+
+    fn is_light_stuck(&self, x: usize, y: usize) -> bool {
+        // Lights in the four corners are stuck
+        (x == 0 && y == 0)
+            || (x == 0 && y == self.y - 1)
+            || (x == self.x - 1 && y == 0)
+            || (x == self.x - 1 && y == self.y - 1)
+    }
 }
 
 #[cfg(test)]
@@ -153,6 +169,17 @@ mod tests {
             "..#...".to_string(),
             "#.#..#".to_string(),
             "####..".to_string(),
+        ])
+    }
+
+    fn create_grid_stuck() -> Grid {
+        Grid::new_from_puzzle(vec![
+            "##.#.#".to_string(),
+            "...##.".to_string(),
+            "#....#".to_string(),
+            "..#...".to_string(),
+            "#.#..#".to_string(),
+            "####.#".to_string(),
         ])
     }
 
@@ -206,6 +233,16 @@ mod tests {
         grid.steps(4);
 
         assert_eq!(grid.lights_on_count(), 4);
+    }
+
+    #[test]
+    fn test_steps_lights_stuck() {
+        let mut grid = create_grid_stuck();
+
+        grid.set_lights_stuck();
+        grid.steps(5);
+
+        assert_eq!(grid.lights_on_count(), 17);
     }
 
     #[test]
