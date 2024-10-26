@@ -19,5 +19,12 @@ fn main() {
         exit(1);
     });
 
-    println!("Part 1: Number of combinations: {}", eggnog.count(150));
+    println!(
+        "Part 1: Number of combinations                 : {}",
+        eggnog.count(150)
+    );
+    println!(
+        "Part 1: Number of solution with minimum buckets: {}",
+        eggnog.count_minimum_buckets(150)
+    );
 }

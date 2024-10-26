@@ -27,6 +27,30 @@ impl Eggnog {
         self.solutions.borrow().len()
     }
 
+    pub fn count_minimum_buckets(&self, volume: u32) -> usize {
+        // Reset members
+        self.current_combination.borrow_mut().clear();
+        self.solutions.borrow_mut().clear();
+
+        // Investigate
+        self.find_combination(volume, 0);
+
+        // Count number of solutions with minimum of buckets
+        let min = self
+            .solutions
+            .borrow()
+            .iter()
+            .map(|s| s.len())
+            .min()
+            .expect("Failed to find min");
+
+        self.solutions
+            .borrow()
+            .iter()
+            .filter(|&s| s.len() == min)
+            .count()
+    }
+
     fn find_combination(&self, volume: u32, index: usize) {
         // If we have a solution add it to the list and return
         let sum = self.current_combination.borrow().iter().sum::<u32>();
@@ -68,5 +92,12 @@ mod tests {
         let eggnog = Eggnog::new(vec![20, 15, 10, 5, 5]);
 
         assert_eq!(eggnog.count(25), 4);
+    }
+
+    #[test]
+    fn test_count_minimum_buckets() {
+        let eggnog = Eggnog::new(vec![20, 15, 10, 5, 5]);
+
+        assert_eq!(eggnog.count_minimum_buckets(25), 3);
     }
 }
