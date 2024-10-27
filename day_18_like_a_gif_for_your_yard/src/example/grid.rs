@@ -1,46 +1,36 @@
-use super::light::Light;
+use ndarray::Array2;
+
+use super::{bulb::Bulb, light::Light};
 
 pub struct Grid {
-    x: usize,
-    y: usize,
-    lights: Vec<Vec<Light>>,
-    lights_stuck: bool, // Part 2
+    bulbs: ndarray::Array2<Bulb>,
 }
 
 impl Grid {
-    pub fn new_from_puzzle(puzzle: Vec<String>) -> Self {
-        let mut lights: Vec<Vec<Light>> = vec![];
+    pub fn new_from_puzzle(rows: usize, cols: usize, bulbs: Vec<Bulb>) -> Self {
+        let bulbs = Array2::from_shape_vec((rows, cols), bulbs).unwrap_or_else(|err| {
+            panic!("Failed to create 2D array 'lights' with error '{}'", err)
+        });
 
-        for line in puzzle {
-            let row = line
-                .chars()
-                .map(|c| match c {
-                    '.' => Light::Off,
-                    '#' => Light::On,
-                    _ => panic!("Invalid character '{}'", c),
-                })
-                .collect::<Vec<_>>();
-
-            lights.push(row);
-        }
-
-        Self {
-            x: lights.len(),
-            y: lights.first().unwrap().len(),
-            lights,
-            lights_stuck: false,
-        }
+        Self { bulbs }
     }
 
     pub fn set_lights_stuck(&mut self) {
-        self.lights_stuck = true;
+        // Set bulbs in fours corners as stuck
+        let row_max = self.bulbs.nrows() - 1;
+        let col_max = self.bulbs.ncols() - 1;
+
+        self.bulbs[[0, 0]].set_stuck();
+        self.bulbs[[0, col_max]].set_stuck();
+        self.bulbs[[row_max, 0]].set_stuck();
+        self.bulbs[[row_max, col_max]].set_stuck();
     }
 
     pub fn lights_on_count(&self) -> usize {
-        self.lights
+        self.bulbs
             .iter()
-            .map(|row| row.iter().filter(|&light| light == &Light::On).count())
-            .sum()
+            .filter(|&bulb| bulb.light() == &Light::On)
+            .count()
     }
 
     pub fn steps(&mut self, count: usize) {
@@ -50,104 +40,69 @@ impl Grid {
     }
 
     fn step(&mut self) {
-        // Calculate off/on count in the current grid. Then update all at once.
-        let mut counts = Vec::with_capacity(self.x);
-        for _ in 0..self.x {
-            let mut row = Vec::with_capacity(self.y);
-            row.resize(self.y, (0, 0));
+        // Count current lights for all neighbors
+        self.count_neighbor_lights();
 
-            counts.push(row);
-        }
+        // Apply changes to the grid
+        for bulb in self.bulbs.iter_mut() {
+            // Examine new state of the light
+            let new_light = match bulb.light() {
+                Light::Off => match bulb.neighbors_on() {
+                    3 => Light::On,
+                    _ => Light::Off,
+                },
+                Light::On => match bulb.neighbors_on() {
+                    2 | 3 => Light::On,
+                    _ => Light::Off,
+                },
+            };
 
-        for i in 0..self.x {
-            for j in 0..self.y {
-                let count = self.count_off_on(i, j);
-                *counts.get_mut(i).unwrap().get_mut(j).unwrap() = count;
-            }
-        }
-
-        // Now apply changes to the grid
-        for i in 0..self.x {
-            for j in 0..self.y {
-                // Skip stuck lights - execute this only if 'lights stuck' is active
-                if self.lights_stuck && self.is_light_stuck(i, j) {
-                    continue;
-                }
-
-                let light = self.lights.get_mut(i).unwrap().get_mut(j).unwrap();
-                let (_count_off, count_on) = *counts.get(i).unwrap().get(j).unwrap();
-
-                let new_state = match light {
-                    Light::On => {
-                        if count_on == 2 || count_on == 3 {
-                            Light::On
-                        } else {
-                            Light::Off
-                        }
-                    }
-                    Light::Off => {
-                        if count_on == 3 {
-                            Light::On
-                        } else {
-                            Light::Off
-                        }
-                    }
-                };
-
-                *light = new_state;
-            }
+            // Update the state
+            bulb.set_light(new_light);
         }
     }
 
-    fn count_off_on(&self, x: usize, y: usize) -> (usize, usize) {
-        let mut off = 0;
-        let mut on = 0;
+    fn count_neighbor_lights(&mut self) {
+        // Calculate number of lights which are on on neighbors
+        let row_max = self.bulbs.nrows() - 1;
+        let col_max = self.bulbs.ncols() - 1;
 
-        let x_from = if x > 0 { x - 1 } else { 0 };
-        let x_to = if x < self.x - 1 { x + 1 } else { self.x - 1 };
+        for row_idx in 0..=row_max {
+            for col_idx in 0..=col_max {
+                // Clamp indexes
+                let from_x = (row_idx as isize - 1).clamp(0, row_max as isize) as usize;
+                let to_x = (row_idx + 1).clamp(0, row_max);
+                let from_y = (col_idx as isize - 1).clamp(0, col_max as isize - 1) as usize;
+                let to_y = (col_idx + 1).clamp(0, col_max);
 
-        let y_from = if y > 0 { y - 1 } else { 0 };
-        let y_to = if y < self.y - 1 { y + 1 } else { self.y - 1 };
+                // Get sub-matrix
+                let slice = self
+                    .bulbs
+                    .slice_mut(ndarray::s![from_x..=to_x, from_y..=to_y]);
 
-        for i in x_from..=x_to {
-            for j in y_from..=y_to {
-                // Skip ourself
-                if i == x && j == y {
-                    continue;
-                }
+                // Count neighbor lights on - count all from the slice and decrement ourself if light is on
+                let lights_on = slice
+                    .iter()
+                    .filter(|&bulb| bulb.light() == &Light::On)
+                    .count()
+                    - (self.bulbs[[row_idx, col_idx]].light() == &Light::On) as usize;
 
-                let light = self.lights.get(i).unwrap().get(j).unwrap();
-                match light {
-                    Light::On => {
-                        on += 1;
-                    }
-                    Light::Off => {
-                        off += 1;
-                    }
-                }
+                self.bulbs[[row_idx, col_idx]].set_neighbors_on(lights_on as u32);
             }
         }
-
-        (off, on)
-    }
-
-    fn is_light_stuck(&self, x: usize, y: usize) -> bool {
-        // Lights in the four corners are stuck
-        (x == 0 && y == 0)
-            || (x == 0 && y == self.y - 1)
-            || (x == self.x - 1 && y == 0)
-            || (x == self.x - 1 && y == self.y - 1)
     }
 }
 
 #[cfg(test)]
 mod tests {
 
+    use crate::example::reader::Reader;
+
     use super::*;
 
     fn check_lights(grid: &Grid, on: &[(usize, usize)]) {
-        for i in 0..grid.x {
-            for j in 0..grid.y {
+        for i in 0..grid.bulbs.nrows() {
+            for j in 0..grid.bulbs.ncols() {
                 // If there is an item in 'on' list expect this index as On, otherwise expect Off
                 let expected = on
                     .iter()
@@ -155,14 +110,13 @@ mod tests {
                     .map(|_| Light::On)
                     .unwrap_or(Light::Off);
 
-                let light = grid.lights.get(i).unwrap().get(j).unwrap();
-                assert_eq!(light, &expected, "[{},{}]", i, j);
+                assert_eq!(grid.bulbs[[i, j]].light(), &expected, "[{},{}]", i, j);
             }
         }
     }
 
     fn create_grid() -> Grid {
-        Grid::new_from_puzzle(vec![
+        Reader::read_grid_from_text(&vec![
             ".#.#.#".to_string(),
             "...##.".to_string(),
             "#....#".to_string(),
@@ -170,10 +124,11 @@ mod tests {
             "#.#..#".to_string(),
             "####..".to_string(),
         ])
+        .expect("Failed to create grid from text")
     }
 
     fn create_grid_stuck() -> Grid {
-        Grid::new_from_puzzle(vec![
+        Reader::read_grid_from_text(&vec![
             "##.#.#".to_string(),
             "...##.".to_string(),
             "#....#".to_string(),
@@ -181,6 +136,7 @@ mod tests {
             "#.#..#".to_string(),
             "####.#".to_string(),
         ])
+        .expect("Failed to create grid from text")
     }
 
     #[test]
@@ -228,6 +184,23 @@ mod tests {
     }
 
     #[test]
+    fn test_count_neighbor_lights() {
+        let mut grid = create_grid();
+
+        grid.count_neighbor_lights();
+
+        assert_eq!(grid.bulbs[[0, 0]].neighbors_on(), 1);
+        assert_eq!(grid.bulbs[[0, 1]].neighbors_on(), 0);
+        assert_eq!(grid.bulbs[[0, 5]].neighbors_on(), 1);
+        assert_eq!(grid.bulbs[[1, 0]].neighbors_on(), 2);
+        assert_eq!(grid.bulbs[[1, 1]].neighbors_on(), 2);
+        assert_eq!(grid.bulbs[[1, 5]].neighbors_on(), 3);
+        assert_eq!(grid.bulbs[[5, 0]].neighbors_on(), 2);
+        assert_eq!(grid.bulbs[[5, 1]].neighbors_on(), 4);
+        assert_eq!(grid.bulbs[[5, 5]].neighbors_on(), 1);
+    }
+
+    #[test]
     fn test_steps() {
         let mut grid = create_grid();
         grid.steps(4);
@@ -243,20 +216,5 @@ mod tests {
         grid.steps(5);
 
         assert_eq!(grid.lights_on_count(), 17);
-    }
-
-    #[test]
-    fn test_count_off_on() {
-        let grid = create_grid();
-
-        assert_eq!(grid.count_off_on(0, 0), (2, 1));
-        assert_eq!(grid.count_off_on(0, 1), (5, 0));
-        assert_eq!(grid.count_off_on(0, 5), (2, 1));
-        assert_eq!(grid.count_off_on(1, 0), (3, 2));
-        assert_eq!(grid.count_off_on(1, 1), (6, 2));
-        assert_eq!(grid.count_off_on(1, 5), (2, 3));
-        assert_eq!(grid.count_off_on(5, 0), (1, 2));
-        assert_eq!(grid.count_off_on(5, 1), (1, 4));
-        assert_eq!(grid.count_off_on(5, 5), (2, 1));
     }
 }
