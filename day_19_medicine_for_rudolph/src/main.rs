@@ -23,5 +23,10 @@ fn main() {
     println!(
         "Part 1: Number of distinct molecules: {}",
         machine.get_number_of_distinct_molecules(&molecule)
+    );
+
+    println!(
+        "Part 2: Number of minimal steps     : {}",
+        machine.fabricate_molecule_minimum_steps(&molecule).unwrap()
     )
 }

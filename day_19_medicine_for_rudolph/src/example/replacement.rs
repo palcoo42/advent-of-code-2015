@@ -18,6 +18,14 @@ impl Replacement {
             })
             .collect::<Vec<_>>()
     }
+
+    pub fn from(&self) -> &str {
+        &self.from
+    }
+
+    pub fn to(&self) -> &str {
+        &self.to
+    }
 }
 
 #[cfg(test)]
