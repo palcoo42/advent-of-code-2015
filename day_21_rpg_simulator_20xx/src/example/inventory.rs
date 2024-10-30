@@ -56,27 +56,23 @@ impl Inventory {
         ]
     }
 
-    pub fn build_players_based_on_cost(&self, hit_points: HitPoints) -> Vec<Character> {
+    pub fn build_players_combinations(&self, hit_points: HitPoints) -> Vec<Character> {
         // Create all permutations
         // Note: There is 1 weapon, 0-1 armor, 0-2 rings
         let mut players = Vec::new();
 
         for weapon in &self.weapons {
-            for armor in self.armors.iter().map(Some).chain(once(None)) {
-                for ring in
-                    (0..=2).flat_map(|n| self.rings.iter().combinations(n).collect::<Vec<_>>())
-                {
-                    let player_weapon = weapon.clone();
-                    let player_armor = armor.cloned();
-                    let player_rings = if ring.is_empty() {
-                        None
-                    } else {
-                        let ring = ring.iter().map(|&r| r.clone()).collect::<Vec<_>>();
-                        Some(ring)
-                    };
-
+            for armor in self.armors.iter().cloned().map(Some).chain(once(None)) {
+                for ring in (0..=2).flat_map(|n| {
+                    self.rings
+                        .iter()
+                        .cloned()
+                        .combinations(n)
+                        .map(Some)
+                        .chain(None)
+                }) {
                     let player =
-                        Character::new(hit_points, player_weapon, player_armor, player_rings);
+                        Character::new(hit_points, weapon.clone(), armor.clone(), ring.clone());
                     players.push(player);
                 }
             }
@@ -91,9 +87,9 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_build_players_based_on_cost() {
+    fn test_build_players_combinations() {
         let inv = Inventory::new();
 
-        assert_eq!(inv.build_players_based_on_cost(100).len(), 660);
+        assert_eq!(inv.build_players_combinations(100).len(), 660);
     }
 }

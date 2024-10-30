@@ -23,7 +23,7 @@ impl Simulation {
     pub fn find_minimal_cost_to_win_battle(&self) -> CostValue {
         let mut players = self
             .inventory
-            .build_players_based_on_cost(self.player_health);
+            .build_players_combinations(self.player_health);
 
         // Filter battles when Player wins and find the one with the minimum cost
         players
@@ -39,6 +39,27 @@ impl Simulation {
             })
             .min()
             .expect("Failed to find min cost")
+    }
+
+    pub fn find_maximal_cost_and_lose_battle(&self) -> CostValue {
+        let mut players = self
+            .inventory
+            .build_players_combinations(self.player_health);
+
+        // Filter battles when Player wins and find the one with the minimum cost
+        players
+            .iter_mut()
+            .filter_map(|p| {
+                let mut boss = self.boss.clone();
+
+                if Self::battle(p, &mut boss) == Winner::Boss {
+                    Some(p.calc_cost())
+                } else {
+                    None
+                }
+            })
+            .max()
+            .expect("Failed to find max cost")
     }
 
     fn battle(player: &mut Character, boss: &mut Character) -> Winner {

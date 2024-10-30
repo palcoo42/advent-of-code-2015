@@ -22,8 +22,14 @@ fn main() {
     const PLAYER_HEALTH: u32 = 100;
 
     let sim = Simulation::new(PLAYER_HEALTH, boss);
+
     println!(
-        "Part 1: Minimal costs to win a battle: {}",
+        "Part 1: Minimal cost to win a battle  : {}",
         sim.find_minimal_cost_to_win_battle()
+    );
+
+    println!(
+        "Part 2: Maximal cost and lose a battle: {}",
+        sim.find_maximal_cost_and_lose_battle()
     );
 }
