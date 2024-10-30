@@ -1,4 +1,9 @@
+// Part 1
 const PRESENTS_PER_ELF: usize = 10;
+
+// Part 2
+const PRESENTS_PER_ELF_FINITE: usize = 11;
+const HOUSES_FINITE: usize = 50;
 
 pub struct Street {
     street: Vec<usize>,
@@ -20,6 +25,25 @@ impl Street {
         for elf in 1..self.street.len() {
             for house_id in (elf..self.street.len()).step_by(elf) {
                 self.street[house_id] += elf * PRESENTS_PER_ELF;
+            }
+        }
+
+        // Find first house which has at least 'presents' delivered
+        self.street
+            .iter()
+            .enumerate()
+            .find(|(_idx, &count)| count >= presents)
+            .map(|(idx, _count)| idx)
+    }
+
+    pub fn deliver_presents_finite(&mut self, presents: usize) -> Option<usize> {
+        // Reset all counts to zero
+        self.street.iter_mut().for_each(|count| *count = 0);
+
+        // Go though every elf (up to number of street and deliver presents)
+        for elf in 1..self.street.len() {
+            for house_id in (elf..self.street.len()).step_by(elf).take(HOUSES_FINITE) {
+                self.street[house_id] += elf * PRESENTS_PER_ELF_FINITE;
             }
         }
 

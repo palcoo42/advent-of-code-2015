@@ -12,4 +12,8 @@ fn main() {
         "Part 1: Lowest house number: {}",
         street.deliver_presents(36_000_000).unwrap()
     );
+    println!(
+        "Part 2: Lowest house number: {}",
+        street.deliver_presents_finite(36_000_000).unwrap()
+    );
 }
