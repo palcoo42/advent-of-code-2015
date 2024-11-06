@@ -1,6 +1,7 @@
 use super::{
     active_spells::ActiveSpells,
     boss::Boss,
+    difficulty::Difficulty,
     spells::{spell::Spell, spell_type::SpellType},
     winner::Winner,
     wizard::Wizard,
@@ -12,15 +13,17 @@ pub struct Game {
     boss: Boss,
     active_spells: ActiveSpells,
     history: Vec<SpellType>,
+    difficulty: Difficulty,
 }
 
 impl Game {
-    pub fn new(wizard: Wizard, boss: Boss) -> Self {
+    pub fn new(wizard: Wizard, boss: Boss, difficulty: Difficulty) -> Self {
         Self {
             wizard,
             boss,
             active_spells: ActiveSpells::new(),
             history: Vec::new(),
+            difficulty,
         }
     }
 
@@ -41,6 +44,17 @@ impl Game {
     }
 
     fn player_turn(&mut self, mut spell: Box<dyn Spell>) -> Option<Winner> {
+        // Part 2: Hard difficulty
+        if self.difficulty == Difficulty::Hard {
+            // Decrease player's hit point by 1
+            self.wizard.decrease_hit_points(1);
+
+            // Check end of the game
+            if let Some(winner) = self.check_winner() {
+                return Some(winner);
+            }
+        }
+
         // Update history
         self.history.push(spell.get_spell_type());
 
@@ -127,11 +141,11 @@ mod tests {
     use super::*;
 
     fn create_game_1() -> Game {
-        Game::new(Wizard::new(10, 250), Boss::new(13, 8))
+        Game::new(Wizard::new(10, 250), Boss::new(13, 8), Difficulty::Normal)
     }
 
     fn create_game_2() -> Game {
-        Game::new(Wizard::new(10, 250), Boss::new(14, 8))
+        Game::new(Wizard::new(10, 250), Boss::new(14, 8), Difficulty::Normal)
     }
 
     #[test]

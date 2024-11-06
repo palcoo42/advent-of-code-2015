@@ -1,6 +1,9 @@
 use std::collections::VecDeque;
 
-use super::{boss::Boss, game::Game, winner::Winner, winning_games::WinningGames, wizard::Wizard};
+use super::{
+    boss::Boss, difficulty::Difficulty, game::Game, winner::Winner, winning_games::WinningGames,
+    wizard::Wizard,
+};
 
 pub struct Simulation {
     wizard: Wizard,
@@ -12,9 +15,9 @@ impl Simulation {
         Self { wizard, boss }
     }
 
-    pub fn find_lowest_mana_cost_to_win(&mut self) -> WinningGames {
+    pub fn find_lowest_mana_cost_to_win(&mut self, difficulty: Difficulty) -> WinningGames {
         // Start brand new game
-        let game = Game::new(self.wizard.clone(), self.boss.clone());
+        let game = Game::new(self.wizard.clone(), self.boss.clone(), difficulty);
 
         // Keep track of lowest mana found so far
         let mut winning_games = WinningGames::default();
@@ -103,12 +106,24 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_find_lowest_mana_cost_to_win() {
-        let mut sim = Simulation::new(Wizard::new(10, 250), Boss::new(13, 8));
+    fn test_find_lowest_mana_cost_to_win_normal_difficulty() {
+        let mut sim = Simulation::new(Wizard::new(50, 500), Boss::new(55, 8));
 
         assert_eq!(
-            sim.find_lowest_mana_cost_to_win().get_spent_mana(),
-            Some(226)
+            sim.find_lowest_mana_cost_to_win(Difficulty::Normal)
+                .get_spent_mana(),
+            Some(953)
+        );
+    }
+
+    #[test]
+    fn test_find_lowest_mana_cost_to_win_hard_difficulty() {
+        let mut sim = Simulation::new(Wizard::new(50, 500), Boss::new(55, 8));
+
+        assert_eq!(
+            sim.find_lowest_mana_cost_to_win(Difficulty::Hard)
+                .get_spent_mana(),
+            Some(1289)
         );
     }
 }

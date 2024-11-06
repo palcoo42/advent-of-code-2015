@@ -1,5 +1,6 @@
 pub mod active_spells;
 pub mod boss;
+pub mod difficulty;
 pub mod game;
 pub mod reader;
 pub mod simulation;
