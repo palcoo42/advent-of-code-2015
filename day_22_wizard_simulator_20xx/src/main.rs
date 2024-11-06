@@ -22,13 +22,16 @@ fn main() {
     let wizard = Wizard::new(50, 500);
     let mut sim = Simulation::new(wizard, boss);
 
-    let lowest_mana_cost = sim
-        .find_lowest_mana_cost_to_win()
-        .expect("Failed to find lowest mana cost");
+    let games_lowest_mana = sim.find_lowest_mana_cost_to_win();
 
     println!(
-        "Part 1: Lowest mana cost to win: {}, spells: {:?}",
-        lowest_mana_cost.get_spent_mana(),
-        lowest_mana_cost.get_history()
+        "Part 1: Lowest mana cost to win: {} [{} solutions]",
+        games_lowest_mana.get_spent_mana().unwrap(),
+        games_lowest_mana.get_games().len()
     );
+
+    println!();
+    for (id, solution) in games_lowest_mana.get_games().iter().enumerate() {
+        println!("{:2} {:?}", id + 1, solution.get_history());
+    }
 }

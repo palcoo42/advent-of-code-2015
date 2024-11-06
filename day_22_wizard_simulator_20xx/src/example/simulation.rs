@@ -1,6 +1,6 @@
 use std::collections::VecDeque;
 
-use super::{boss::Boss, game::Game, winner::Winner, wizard::Wizard};
+use super::{boss::Boss, game::Game, winner::Winner, winning_games::WinningGames, wizard::Wizard};
 
 pub struct Simulation {
     wizard: Wizard,
@@ -12,12 +12,12 @@ impl Simulation {
         Self { wizard, boss }
     }
 
-    pub fn find_lowest_mana_cost_to_win(&mut self) -> Option<Game> {
+    pub fn find_lowest_mana_cost_to_win(&mut self) -> WinningGames {
         // Start brand new game
         let game = Game::new(self.wizard.clone(), self.boss.clone());
 
         // Keep track of lowest mana found so far
-        let mut min_mana_game: Option<Game> = None;
+        let mut winning_games = WinningGames::default();
 
         // Run BFS algorithm to find lowest mana cost
         let mut queue = VecDeque::new();
@@ -39,14 +39,38 @@ impl Simulation {
                     Some(winner) => {
                         if winner == Winner::Wizard {
                             // Update lowest value if applicable
-                            match &min_mana_game {
-                                Some(min_game) => {
-                                    if min_game.get_spent_mana() > game_spent_mana {
-                                        min_mana_game = Some(new_game.clone());
+                            // match &min_mana_game {
+                            //     Some(min_game) => {
+                            //         if min_game.get_spent_mana() > game_spent_mana {
+                            //             min_mana_game = Some(new_game.clone());
+                            //         }
+                            //     }
+                            //     None => {
+                            //         min_mana_game = Some(new_game.clone());
+                            //     }
+                            // }
+
+                            // Update status of winning games
+                            match &winning_games.get_spent_mana() {
+                                Some(current_min_mana) => {
+                                    // Do we have a new minimum?
+                                    match current_min_mana.cmp(&new_game.get_spent_mana()) {
+                                        std::cmp::Ordering::Less => {
+                                            // Current minimum is smaller than new game -> nothing to do
+                                        }
+                                        std::cmp::Ordering::Equal => {
+                                            // Same minimum
+                                            winning_games.add_game(new_game.clone());
+                                        }
+                                        std::cmp::Ordering::Greater => {
+                                            // Current minimum is larger than new game -> update with new minimum
+                                            winning_games.replace_games(new_game.clone());
+                                        }
                                     }
                                 }
                                 None => {
-                                    min_mana_game = Some(new_game.clone());
+                                    // First winner
+                                    winning_games.replace_games(new_game.clone());
                                 }
                             }
                         }
@@ -56,8 +80,8 @@ impl Simulation {
                     }
                     None => {
                         // If game spent mana >= lowest mana skip whole tree as we cannot reach minimum anymore
-                        if let Some(ref lowest) = min_mana_game {
-                            if game_spent_mana >= lowest.get_spent_mana() {
+                        if let Some(ref lowest) = winning_games.get_spent_mana() {
+                            if &game_spent_mana >= lowest {
                                 continue;
                             }
                         }
@@ -70,7 +94,7 @@ impl Simulation {
         }
 
         // Return the result
-        min_mana_game
+        winning_games
     }
 }
 
@@ -83,8 +107,8 @@ mod tests {
         let mut sim = Simulation::new(Wizard::new(10, 250), Boss::new(13, 8));
 
         assert_eq!(
-            sim.find_lowest_mana_cost_to_win().unwrap().get_spent_mana(),
-            226
+            sim.find_lowest_mana_cost_to_win().get_spent_mana(),
+            Some(226)
         );
     }
 }
