@@ -24,6 +24,11 @@ impl Cpu {
         }
     }
 
+    pub fn reset_registers_with_one(&mut self) {
+        self.registers.set("a", 1);
+        self.registers.set("b", 0);
+    }
+
     pub fn run(&mut self) -> Result<(), CpuError> {
         // Reset stack pointer to start from the scratch
         self.stack_pointer.reset();
@@ -249,10 +254,6 @@ mod tests {
 
     #[test]
     fn test_run() {
-        // inc a
-        // jio a, +2
-        // tpl a
-        // inc a
         let mut instructions = Instructions::new();
         instructions.push(InstructionFactory::increment("a"));
         instructions.push(InstructionFactory::jump_if_one("a", 2));
