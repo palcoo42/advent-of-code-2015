@@ -82,8 +82,8 @@ impl ActiveSpells {
         self.effects.iter().map(|s| s.get_armor()).sum()
     }
 
-    pub fn get_spell(&self, index: usize) -> Option<&Box<dyn Spell>> {
-        self.effects.get(index)
+    pub fn get_spell(&self, index: usize) -> Option<&dyn Spell> {
+        self.effects.get(index).map(|boxed| &**boxed)
     }
 }
 
