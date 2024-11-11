@@ -4,7 +4,7 @@
 		{
 			"type": "cargo",
 			"command": "run",
-			"args": [ "--package", "day_23_opening_the_turing_lock" ],
+			"args": [ "--package", "day_24_it_hangs_in_the_balance" ],
 			"problemMatcher": [
 				"$rustc"
 			],
@@ -18,7 +18,7 @@
 		{
 			"type": "cargo",
 			"command": "test",
-			"args": [ "--package", "day_23_opening_the_turing_lock" ],
+			"args": [ "--package", "day_24_it_hangs_in_the_balance" ],
 			"problemMatcher": [
 				"$rustc"
 			],
