@@ -2,8 +2,6 @@ use std::{cmp::Ordering, collections::VecDeque};
 
 use super::state::State;
 
-const GROUPS_SIZE: u32 = 3;
-
 #[derive(Default)]
 pub struct Generator {
     packages: Vec<u32>,
@@ -17,9 +15,9 @@ impl Generator {
         Self { packages: sorted }
     }
 
-    pub fn find_min_entanglement(&self) -> u128 {
+    pub fn find_min_entanglement(&self, groups: u32) -> u128 {
         // Find group target sum
-        let target = self.packages.iter().sum::<u32>() / GROUPS_SIZE;
+        let target = self.packages.iter().sum::<u32>() / groups;
 
         let mut min_quantum_entanglement = u128::MAX;
         let mut min_depth = u32::MAX;
@@ -82,6 +80,7 @@ mod tests {
     fn test_construct_triplets() {
         let gen = Generator::new(vec![1, 2, 3, 4, 5, 7, 8, 9, 10, 11]);
 
-        assert_eq!(gen.find_min_entanglement(), 99);
+        assert_eq!(gen.find_min_entanglement(3), 99);
+        assert_eq!(gen.find_min_entanglement(4), 44);
     }
 }

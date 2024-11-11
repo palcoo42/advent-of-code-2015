@@ -23,6 +23,11 @@ fn main() {
 
     println!(
         "Part 1: Quantum entanglement: {}",
-        gen.find_min_entanglement()
+        gen.find_min_entanglement(3)
+    );
+
+    println!(
+        "Part 2: Quantum entanglement: {}",
+        gen.find_min_entanglement(4)
     );
 }
