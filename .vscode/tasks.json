@@ -4,7 +4,7 @@
 		{
 			"type": "cargo",
 			"command": "run",
-			"args": [ "--package", "day_24_it_hangs_in_the_balance" ],
+			"args": [ "--package", "day_25_let_it_snow" ],
 			"problemMatcher": [
 				"$rustc"
 			],
@@ -18,7 +18,7 @@
 		{
 			"type": "cargo",
 			"command": "test",
-			"args": [ "--package", "day_24_it_hangs_in_the_balance" ],
+			"args": [ "--package", "day_25_let_it_snow" ],
 			"problemMatcher": [
 				"$rustc"
 			],
