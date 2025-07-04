@@ -27,6 +27,7 @@ checksum = "32a282da65faaf38286cf3be983213fcf1d2e2a58700e808f83f4ea9a4804bc0"
 [[package]]
 name = "puzzler"
 version = "0.1.0"
+source = "git+ssh://git@github.com/palcoo42/puzzler.git?branch=master#d5ef0f9ed4980171f4326bd2ffbec67db61f0461"
 dependencies = [
  "regex",
 ]
