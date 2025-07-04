@@ -1,0 +1,9 @@
+[workspace]
+resolver = "3"
+members = [
+    "day_01_not_quite_lisp",
+]
+
+[workspace.dependencies]
+regex = { version = "1.*" }
+puzzler = { git = "ssh://git@github.com/palcoo42/puzzler.git", branch = "master" }

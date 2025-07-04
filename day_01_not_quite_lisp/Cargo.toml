@@ -1,0 +1,8 @@
+[package]
+name = "day_01_not_quite_lisp"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# puzzler = { workspace = true }
+puzzler = { path = "/workspaces/codespaces-blank/puzzler" }

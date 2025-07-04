@@ -1,0 +1,53 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cargo",
+			"command": "run",
+			"args": [ "--package", "day_01_not_quite_lisp" ],
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "build",
+			"label": "$(play) run",
+			"options": {"statusbar": {"color": "#7dcb8b"}},
+			"presentation": {
+				"clear": true
+			},
+		},
+		{
+			"type": "cargo",
+			"command": "test",
+			"args": [ "--package", "day_01_not_quite_lisp",
+					  //"--", "--nocapture"
+				    ],
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "test",
+			"label": "$(play) test",
+			"options": {"statusbar": {"color": "#b17dcb"}},
+			"presentation": {
+				"clear": true
+			}
+		},
+		{
+			"type": "cargo",
+			"command": "test",
+			"args": [
+				"--release",
+				"--",
+				"--include-ignored"
+			],
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "test",
+			"label": "$(play) test all",
+			"options": {"statusbar": {"color": "#cb7d92"}},
+			"presentation": {
+				"clear": true
+			}
+		}
+	]
+}
