@@ -2,6 +2,7 @@
 resolver = "3"
 members = [
     "day_01_not_quite_lisp",
+    "day_02_i_was_told_there_would_be_no_math",
 ]
 
 [workspace.dependencies]
