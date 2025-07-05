@@ -8,4 +8,4 @@ members = [
 
 [workspace.dependencies]
 regex = { version = "1.*" }
-puzzler = { git = "ssh://git@github.com/palcoo42/puzzler.git", branch = "master" }
+puzzler = { git = "https://github.com/palcoo42/puzzler.git", branch = "master" }
