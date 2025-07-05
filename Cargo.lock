@@ -41,6 +41,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "day_05_doesnt_he_have_intern_elves_for_this"
+version = "0.1.0"
+dependencies = [
+ "puzzler",
+]
+
+[[package]]
 name = "md5"
 version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"

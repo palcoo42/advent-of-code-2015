@@ -5,7 +5,7 @@
 			"type": "cargo",
 			"command": "run",
 			"args": [ "--release",
-				      "--package", "day_04_the_ideal_stocking_stuffer" ],
+				      "--package", "day_05_doesnt_he_have_intern_elves_for_this" ],
 			"problemMatcher": [
 				"$rustc"
 			],
@@ -20,7 +20,7 @@
 			"type": "cargo",
 			"command": "test",
 			"args": [ "--release",
-				      "--package", "day_04_the_ideal_stocking_stuffer",
+				      "--package", "day_05_doesnt_he_have_intern_elves_for_this",
 					  // "--",
 					  // "--nocapture"
 				    ],

@@ -1,0 +1,200 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'day_01_not_quite_lisp'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=day_01_not_quite_lisp",
+                    "--package=day_01_not_quite_lisp"
+                ],
+                "filter": {
+                    "name": "day_01_not_quite_lisp",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'day_01_not_quite_lisp'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=day_01_not_quite_lisp",
+                    "--package=day_01_not_quite_lisp"
+                ],
+                "filter": {
+                    "name": "day_01_not_quite_lisp",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'day_02_i_was_told_there_would_be_no_math'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=day_02_i_was_told_there_would_be_no_math",
+                    "--package=day_02_i_was_told_there_would_be_no_math"
+                ],
+                "filter": {
+                    "name": "day_02_i_was_told_there_would_be_no_math",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'day_02_i_was_told_there_would_be_no_math'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=day_02_i_was_told_there_would_be_no_math",
+                    "--package=day_02_i_was_told_there_would_be_no_math"
+                ],
+                "filter": {
+                    "name": "day_02_i_was_told_there_would_be_no_math",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'day_03_perfectly_spherical_houses_in_a_vacuum'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=day_03_perfectly_spherical_houses_in_a_vacuum",
+                    "--package=day_03_perfectly_spherical_houses_in_a_vacuum"
+                ],
+                "filter": {
+                    "name": "day_03_perfectly_spherical_houses_in_a_vacuum",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'day_03_perfectly_spherical_houses_in_a_vacuum'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=day_03_perfectly_spherical_houses_in_a_vacuum",
+                    "--package=day_03_perfectly_spherical_houses_in_a_vacuum"
+                ],
+                "filter": {
+                    "name": "day_03_perfectly_spherical_houses_in_a_vacuum",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'day_04_the_ideal_stocking_stuffer'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=day_04_the_ideal_stocking_stuffer",
+                    "--package=day_04_the_ideal_stocking_stuffer"
+                ],
+                "filter": {
+                    "name": "day_04_the_ideal_stocking_stuffer",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'day_04_the_ideal_stocking_stuffer'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=day_04_the_ideal_stocking_stuffer",
+                    "--package=day_04_the_ideal_stocking_stuffer"
+                ],
+                "filter": {
+                    "name": "day_04_the_ideal_stocking_stuffer",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'day_05_doesnt_he_have_intern_elves_for_this'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=day_05_doesnt_he_have_intern_elves_for_this",
+                    "--package=day_05_doesnt_he_have_intern_elves_for_this"
+                ],
+                "filter": {
+                    "name": "day_05_doesnt_he_have_intern_elves_for_this",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "env": {
+                "CARGO_MANIFEST_DIR": "/workspaces/codespaces-blank/advent-of-code-2015/day_05_doesnt_he_have_intern_elves_for_this"
+            },
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'day_05_doesnt_he_have_intern_elves_for_this'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=day_05_doesnt_he_have_intern_elves_for_this",
+                    "--package=day_05_doesnt_he_have_intern_elves_for_this"
+                ],
+                "filter": {
+                    "name": "day_05_doesnt_he_have_intern_elves_for_this",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+                     "env": {
+                "CARGO_MANIFEST_DIR": "/workspaces/codespaces-blank/advent-of-code-2015/day_05_doesnt_he_have_intern_elves_for_this"
+            },
+               "cwd": "${workspaceFolder}"
+        }
+    ]
+}
