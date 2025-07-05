@@ -1,0 +1,8 @@
+[package]
+name = "day_04_the_ideal_stocking_stuffer"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+md5 = { workspace = true }
+puzzler = { workspace = true }

@@ -4,7 +4,8 @@
 		{
 			"type": "cargo",
 			"command": "run",
-			"args": [ "--package", "day_03_perfectly_spherical_houses_in_a_vacuum" ],
+			"args": [ "--release",
+				      "--package", "day_04_the_ideal_stocking_stuffer" ],
 			"problemMatcher": [
 				"$rustc"
 			],
@@ -18,8 +19,10 @@
 		{
 			"type": "cargo",
 			"command": "test",
-			"args": [ "--package", "day_03_perfectly_spherical_houses_in_a_vacuum",
-					  //"--", "--nocapture"
+			"args": [ "--release",
+				      "--package", "day_04_the_ideal_stocking_stuffer",
+					  // "--",
+					  // "--nocapture"
 				    ],
 			"problemMatcher": [
 				"$rustc"
