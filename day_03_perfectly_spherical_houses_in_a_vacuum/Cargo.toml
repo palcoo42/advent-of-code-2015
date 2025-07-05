@@ -1,0 +1,8 @@
+[package]
+name = "day_03_perfectly_spherical_houses_in_a_vacuum"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# puzzler = { workspace = true }
+puzzler = { path = "/workspaces/codespaces-blank/puzzler" }
