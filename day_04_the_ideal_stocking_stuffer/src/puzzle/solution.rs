@@ -6,7 +6,7 @@ pub struct Solution {}
 
 impl Puzzle for Solution {
     fn name(&self) -> &str {
-        "--- Day 4: The Ideal Stocking Stuffer ---"
+        "--- Day 04: The Ideal Stocking Stuffer ---"
     }
 
     // Solve first part of the puzzle

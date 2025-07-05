@@ -11,7 +11,7 @@ pub struct Solution {
 
 impl Puzzle for Solution {
     fn name(&self) -> &str {
-        "--- Day 5: Doesn't He Have Intern-Elves For This? ---"
+        "--- Day 05: Doesn't He Have Intern-Elves For This? ---"
     }
 
     fn get_input_file_path(&self) -> Option<std::path::PathBuf> {
