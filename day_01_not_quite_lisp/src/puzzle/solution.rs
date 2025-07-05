@@ -52,10 +52,10 @@ impl Solution {
         }
     }
 
-    fn calculate_floor(instructions: &str) -> i64 {
+    fn calculate_floor(instructions: &str) -> isize {
         // Loop only once
-        let mut up = 0_i64;
-        let mut down = 0_i64;
+        let mut up = 0;
+        let mut down = 0;
 
         for stair in instructions.bytes() {
             match stair {
@@ -68,9 +68,9 @@ impl Solution {
         up - down
     }
 
-    fn find_floor_to_enter_basement(instructions: &str) -> Option<i64> {
+    fn find_floor_to_enter_basement(instructions: &str) -> Option<usize> {
         // Loop only once
-        let mut delta = 0_i64;
+        let mut delta = 0;
 
         for (i, stair) in instructions.bytes().enumerate() {
             match stair {
@@ -80,7 +80,7 @@ impl Solution {
             }
 
             if delta < 0 {
-                return Some(i as i64 + 1);
+                return Some(i + 1);
             }
         }
 

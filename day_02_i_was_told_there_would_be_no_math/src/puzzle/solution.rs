@@ -32,16 +32,16 @@ impl Puzzle for Solution {
             }
 
             let length = params[0]
-                .parse::<i64>()
-                .map_err(|e| format!("Parsing length error '{}' [{}]", params[0], e))?;
+                .parse::<usize>()
+                .map_err(|e| format!("Failed to parse 'length' [{}] [{}]", params[0], e))?;
 
             let width = params[1]
-                .parse::<i64>()
-                .map_err(|e| format!("Parsing width error '{}' [{}]", params[1], e))?;
+                .parse::<usize>()
+                .map_err(|e| format!("Failed to parse 'width' [{}] [{}]", params[1], e))?;
 
             let height = params[2]
-                .parse::<i64>()
-                .map_err(|e| format!("Parsing height error '{}' [{}]", params[2], e))?;
+                .parse::<usize>()
+                .map_err(|e| format!("Failed to parse 'height' [{}] [{}]", params[2], e))?;
 
             Ok(Dimensions {
                 length,
@@ -53,12 +53,22 @@ impl Puzzle for Solution {
     }
 
     fn solve_part1(&mut self) -> Result<String, Box<dyn Error>> {
-        let total: i64 = self.dimensions.iter().map(Solution::calculate_area).sum();
+        let total = self
+            .dimensions
+            .iter()
+            .map(Solution::calculate_area)
+            .sum::<usize>();
+
         Ok(total.to_string())
     }
 
     fn solve_part2(&mut self) -> Result<String, Box<dyn Error>> {
-        let total: i64 = self.dimensions.iter().map(Solution::calculate_ribbon).sum();
+        let total = self
+            .dimensions
+            .iter()
+            .map(Solution::calculate_ribbon)
+            .sum::<usize>();
+
         Ok(total.to_string())
     }
 }
@@ -68,7 +78,7 @@ impl Solution {
         Self { dimensions: vec![] }
     }
 
-    pub fn calculate_area(dimension: &Dimensions) -> i64 {
+    pub fn calculate_area(dimension: &Dimensions) -> usize {
         let areas = [
             dimension.length * dimension.width,
             dimension.width * dimension.height,
@@ -76,23 +86,23 @@ impl Solution {
         ];
 
         // Areas of all + smallest area
-        2 * areas.iter().sum::<i64>()
+        2 * areas.iter().sum::<usize>()
             + areas
                 .iter()
                 .min()
                 .unwrap_or_else(|| panic!("Failed to find minimum area in [{:?}]", areas))
     }
 
-    pub fn calculate_ribbon(dimension: &Dimensions) -> i64 {
+    pub fn calculate_ribbon(dimension: &Dimensions) -> usize {
         let sides = [dimension.length, dimension.width, dimension.height];
 
         // sum of two shortest sides + bow
-        2 * (sides.iter().sum::<i64>()
+        2 * (sides.iter().sum::<usize>()
             - sides
                 .iter()
                 .max()
                 .unwrap_or_else(|| panic!("Failed to find maximum side in [{:?}]", sides)))
-            + sides.iter().product::<i64>()
+            + sides.iter().product::<usize>()
     }
 }
 
