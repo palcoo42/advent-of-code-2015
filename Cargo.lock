@@ -15,21 +15,21 @@ dependencies = [
 name = "day_01_not_quite_lisp"
 version = "0.1.0"
 dependencies = [
- "puzzler 0.1.0 (git+ssh://git@github.com/palcoo42/puzzler.git?branch=master)",
+ "puzzler",
 ]
 
 [[package]]
 name = "day_02_i_was_told_there_would_be_no_math"
 version = "0.1.0"
 dependencies = [
- "puzzler 0.1.0 (git+ssh://git@github.com/palcoo42/puzzler.git?branch=master)",
+ "puzzler",
 ]
 
 [[package]]
 name = "day_03_perfectly_spherical_houses_in_a_vacuum"
 version = "0.1.0"
 dependencies = [
- "puzzler 0.1.0",
+ "puzzler",
 ]
 
 [[package]]
@@ -41,14 +41,7 @@ checksum = "32a282da65faaf38286cf3be983213fcf1d2e2a58700e808f83f4ea9a4804bc0"
 [[package]]
 name = "puzzler"
 version = "0.1.0"
-dependencies = [
- "regex",
-]
-
-[[package]]
-name = "puzzler"
-version = "0.1.0"
-source = "git+ssh://git@github.com/palcoo42/puzzler.git?branch=master#d5ef0f9ed4980171f4326bd2ffbec67db61f0461"
+source = "git+ssh://git@github.com/palcoo42/puzzler.git?branch=master#579150bc8049d4d72d06f2869c452a91b4e0dff1"
 dependencies = [
  "regex",
 ]
