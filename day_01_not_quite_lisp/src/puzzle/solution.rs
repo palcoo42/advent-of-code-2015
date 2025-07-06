@@ -14,7 +14,7 @@ impl Puzzle for Solution {
     fn get_input_file_path(&self) -> Option<PathBuf> {
         Some(
             project::get_project_file("../input/day_01.txt")
-                .unwrap_or_else(|err| panic!("Failed to fetch file ../input/day_01.txt [{}]", err)),
+                .unwrap_or_else(|err| panic!("Failed to fetch file ../input/day_01.txt [{err}]")),
         )
     }
 
@@ -61,7 +61,7 @@ impl Solution {
             match stair {
                 b'(' => up += 1,
                 b')' => down += 1,
-                x => panic!("Unxpected instruction '{}'", x),
+                x => panic!("Unxpected instruction '{x}'"),
             }
         }
 
@@ -76,7 +76,7 @@ impl Solution {
             match stair {
                 b'(' => delta += 1,
                 b')' => delta -= 1,
-                x => panic!("Unxpected instruction '{}'", x),
+                x => panic!("Unxpected instruction '{x}'"),
             }
 
             if delta < 0 {
@@ -99,7 +99,7 @@ mod tests {
 
         solution
             .parse_input_file()
-            .unwrap_or_else(|err| panic!("Failed to parse input file [{}]", err));
+            .unwrap_or_else(|err| panic!("Failed to parse input file [{err}]"));
 
         solution
     }

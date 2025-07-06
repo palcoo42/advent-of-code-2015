@@ -20,7 +20,7 @@ impl Puzzle for Solution {
     fn get_input_file_path(&self) -> Option<std::path::PathBuf> {
         Some(
             project::get_project_file("../input/day_06.txt")
-                .unwrap_or_else(|err| panic!("Failed to fetch file ../input/day_06.txt [{}]", err)),
+                .unwrap_or_else(|err| panic!("Failed to fetch file ../input/day_06.txt [{err}]")),
         )
     }
 
@@ -42,24 +42,24 @@ impl Puzzle for Solution {
                     "turn on" => Action::TurnOn,
                     "turn off" => Action::TurnOff,
                     "toggle" => Action::Toggle,
-                    a => return Err(format!("Invalid action [{}]", a).into()),
+                    a => return Err(format!("Invalid action [{a}]").into()),
                 };
 
                 let from_start = params[1]
                     .parse::<isize>()
-                    .map_err(|e| format!("Failed to parse 'from start' [{}]", e))?;
+                    .map_err(|e| format!("Failed to parse 'from start' [{e}]"))?;
 
                 let from_end = params[2]
                     .parse::<isize>()
-                    .map_err(|e| format!("Failed to parse 'from end' [{}]", e))?;
+                    .map_err(|e| format!("Failed to parse 'from end' [{e}]"))?;
 
                 let to_start = params[3]
                     .parse::<isize>()
-                    .map_err(|e| format!("Failed to parse 'to start' [{}]", e))?;
+                    .map_err(|e| format!("Failed to parse 'to start' [{e}]"))?;
 
                 let to_end = params[4]
                     .parse::<isize>()
-                    .map_err(|e| format!("Failed to parse 'to end' [{}]", e))?;
+                    .map_err(|e| format!("Failed to parse 'to end' [{e}]"))?;
 
                 Ok(Instruction {
                     action,
@@ -151,7 +151,7 @@ mod tests {
 
         solution
             .parse_input_file()
-            .unwrap_or_else(|err| panic!("Failed to parse input file [{}]", err));
+            .unwrap_or_else(|err| panic!("Failed to parse input file [{err}]"));
 
         solution
     }

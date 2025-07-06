@@ -117,7 +117,7 @@ mod tests {
 
         solution
             .parse_input_file()
-            .unwrap_or_else(|err| panic!("Failed to parse input file [{}]", err));
+            .unwrap_or_else(|err| panic!("Failed to parse input file [{err}]"));
 
         solution
     }

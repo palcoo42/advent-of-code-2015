@@ -18,7 +18,7 @@ impl Puzzle for Solution {
     fn get_input_file_path(&self) -> Option<std::path::PathBuf> {
         Some(
             project::get_project_file("../input/day_03.txt")
-                .unwrap_or_else(|err| panic!("Failed to fetch file ../input/day_03.txt [{}]", err)),
+                .unwrap_or_else(|err| panic!("Failed to fetch file ../input/day_03.txt [{err}]")),
         )
     }
 
@@ -35,7 +35,7 @@ impl Puzzle for Solution {
         // Convert to direction
         self.directions = lines[0]
             .bytes()
-            .map(|b| Direction::try_from(b).map_err(|_| format!("Invalid direction '{}'", b)))
+            .map(|b| Direction::try_from(b).map_err(|_| format!("Invalid direction '{b}'")))
             .collect::<Result<Vec<_>, _>>()?;
 
         Ok(())
@@ -108,7 +108,7 @@ mod tests {
 
         solution
             .parse_input_file()
-            .unwrap_or_else(|err| panic!("Failed to parse input file [{}]", err));
+            .unwrap_or_else(|err| panic!("Failed to parse input file [{err}]"));
 
         solution
     }

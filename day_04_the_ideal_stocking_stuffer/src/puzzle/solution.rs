@@ -36,10 +36,10 @@ impl Solution {
 
         // Loop until we find digest with leading zeros
         loop {
-            let data = format!("{}{}", secret_key, number);
+            let data = format!("{secret_key}{number}");
             let digest = md5::compute(&data);
 
-            if format!("{:x}", digest).starts_with(&zeros) {
+            if format!("{digest:x}").starts_with(&zeros) {
                 return number;
             }
 
