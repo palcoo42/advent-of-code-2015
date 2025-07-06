@@ -1,0 +1,8 @@
+[package]
+name = "day_08_matchsticks"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+hex = { workspace = true }
+puzzler = { workspace = true }
