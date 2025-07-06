@@ -5,7 +5,7 @@
 			"type": "cargo",
 			"command": "run",
 			"args": [ "--release",
-				      "--package", "day_06_probably_a_fire_hazard" ],
+				      "--package", "day_07_some_assembly_required" ],
 			"problemMatcher": [
 				"$rustc"
 			],
@@ -20,7 +20,7 @@
 			"type": "cargo",
 			"command": "test",
 			"args": [ "--release",
-				      "--package", "day_06_probably_a_fire_hazard",
+				      "--package", "day_07_some_assembly_required",
 					  // "--",
 					  // "--nocapture"
 				    ],
