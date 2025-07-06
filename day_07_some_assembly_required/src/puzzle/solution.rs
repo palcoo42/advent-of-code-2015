@@ -135,9 +135,7 @@ impl Solution {
                     let a = self.get_signal_value(a);
                     let b = self.get_signal_value(b);
 
-                    if let Some(a) = a
-                        && let Some(b) = b
-                    {
+                    if let (Some(a), Some(b)) = (a, b) {
                         Some(a & b)
                     } else {
                         None
@@ -147,9 +145,7 @@ impl Solution {
                     let a = self.get_signal_value(a);
                     let b = self.get_signal_value(b);
 
-                    if let Some(a) = a
-                        && let Some(b) = b
-                    {
+                    if let (Some(a), Some(b)) = (a, b) {
                         Some(a | b)
                     } else {
                         None
@@ -159,9 +155,7 @@ impl Solution {
                     let a = self.get_signal_value(a);
                     let shift = self.get_signal_value(shift);
 
-                    if let Some(a) = a
-                        && let Some(shift) = shift
-                    {
+                    if let (Some(a), Some(shift)) = (a, shift) {
                         Some(a << shift)
                     } else {
                         None
@@ -171,9 +165,7 @@ impl Solution {
                     let a = self.get_signal_value(a);
                     let shift = self.get_signal_value(shift);
 
-                    if let Some(a) = a
-                        && let Some(shift) = shift
-                    {
+                    if let (Some(a), Some(shift)) = (a, shift) {
                         Some(a >> shift)
                     } else {
                         None
