@@ -1,0 +1,9 @@
+[package]
+name = "day_09_all_in_a_single_night"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+itertools = { workspace = true }
+pathfinding = {workspace = true }
+puzzler = { workspace = true }

@@ -5,7 +5,7 @@
 			"type": "cargo",
 			"command": "run",
 			"args": [ "--release",
-				      "--package", "day_08_matchsticks" ],
+				      "--package", "day_09_all_in_a_single_night" ],
 			"problemMatcher": [
 				"$rustc"
 			],
@@ -20,7 +20,7 @@
 			"type": "cargo",
 			"command": "test",
 			"args": [ "--release",
-				      "--package", "day_08_matchsticks",
+				      "--package", "day_09_all_in_a_single_night",
 					  // "--",
 					  // "--nocapture"
 				    ],
