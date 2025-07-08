@@ -8,7 +8,7 @@ members = [
     "day_05_doesnt_he_have_intern_elves_for_this",
     "day_06_probably_a_fire_hazard",
     "day_07_some_assembly_required",
-    "day_08_matchsticks", "day_09_all_in_a_single_night", "day_10_elves_look_elves_say",
+    "day_08_matchsticks", "day_09_all_in_a_single_night", "day_10_elves_look_elves_say", "day_11_corporate_policy",
 ]
 
 [workspace.dependencies]
