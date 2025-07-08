@@ -1,8 +1,7 @@
 [package]
-name = "day_09_all_in_a_single_night"
+name = "day_10_elves_look_elves_say"
 version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-itertools = { workspace = true }
 puzzler = { workspace = true }
