@@ -1,0 +1,8 @@
+[package]
+name = "day_13_knights_of_the_dinner_table"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+itertools = { workspace = true }
+puzzler = { workspace = true }

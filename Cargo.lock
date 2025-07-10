@@ -102,6 +102,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "day_13_knights_of_the_dinner_table"
+version = "0.1.0"
+dependencies = [
+ "itertools",
+ "puzzler",
+]
+
+[[package]]
 name = "either"
 version = "1.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"

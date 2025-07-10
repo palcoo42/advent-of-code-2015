@@ -5,7 +5,7 @@
 			"type": "cargo",
 			"command": "run",
 			"args": [ "--release",
-				      "--package", "day_12_js_abacus_framework_io" ],
+				      "--package", "day_13_knights_of_the_dinner_table" ],
 			"problemMatcher": [
 				"$rustc"
 			],
@@ -20,7 +20,7 @@
 			"type": "cargo",
 			"command": "test",
 			"args": [ "--release",
-				      "--package", "day_12_js_abacus_framework_io",
+				      "--package", "day_13_knights_of_the_dinner_table",
 					  // "--",
 					  // "--nocapture"
 				    ],
