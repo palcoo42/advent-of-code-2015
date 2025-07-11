@@ -5,7 +5,7 @@
 			"type": "cargo",
 			"command": "run",
 			"args": [ "--release",
-				      "--package", "day_13_knights_of_the_dinner_table" ],
+				      "--package", "day_14_reindeer_olympics" ],
 			"problemMatcher": [
 				"$rustc"
 			],
@@ -20,7 +20,7 @@
 			"type": "cargo",
 			"command": "test",
 			"args": [ "--release",
-				      "--package", "day_13_knights_of_the_dinner_table",
+				      "--package", "day_14_reindeer_olympics",
 					  // "--",
 					  // "--nocapture"
 				    ],
