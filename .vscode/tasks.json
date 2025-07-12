@@ -5,7 +5,7 @@
 			"type": "cargo",
 			"command": "run",
 			"args": [ "--release",
-				      "--package", "day_14_reindeer_olympics" ],
+				      "--package", "day_15_science_for_hungry_people" ],
 			"problemMatcher": [
 				"$rustc"
 			],
@@ -20,7 +20,7 @@
 			"type": "cargo",
 			"command": "test",
 			"args": [ "--release",
-				      "--package", "day_14_reindeer_olympics",
+				      "--package", "day_15_science_for_hungry_people",
 					  // "--",
 					  // "--nocapture"
 				    ],
