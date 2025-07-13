@@ -139,6 +139,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "day_18_like_a_gif_for_your_yard"
+version = "0.1.0"
+dependencies = [
+ "puzzler",
+]
+
+[[package]]
 name = "either"
 version = "1.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -189,7 +196,7 @@ dependencies = [
 [[package]]
 name = "puzzler"
 version = "0.1.0"
-source = "git+https://github.com/palcoo42/puzzler.git?branch=master#1dadda1999dee6f17498421c1be3c2ce5a6e5d7a"
+source = "git+https://github.com/palcoo42/puzzler.git?branch=master#67adc2d166fe5060423767dcaa9ea8a17fe60a87"
 dependencies = [
  "regex",
 ]

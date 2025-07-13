@@ -5,7 +5,7 @@
 			"type": "cargo",
 			"command": "run",
 			"args": [ "--release",
-				      "--package", "day_17_no_such_thing_as_too_much" ],
+				      "--package", "day_18_like_a_gif_for_your_yard" ],
 			"problemMatcher": [
 				"$rustc"
 			],
@@ -20,7 +20,7 @@
 			"type": "cargo",
 			"command": "test",
 			"args": [ "--release",
-				      "--package", "day_17_no_such_thing_as_too_much",
+				      "--package", "day_18_like_a_gif_for_your_yard",
 					  // "--",
 					  // "--nocapture"
 				    ],

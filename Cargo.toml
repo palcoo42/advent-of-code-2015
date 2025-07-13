@@ -17,7 +17,7 @@ members = [
     "day_14_reindeer_olympics",
     "day_15_science_for_hungry_people",
     "day_16_aunt_sue",
-    "day_17_no_such_thing_as_too_much",
+    "day_17_no_such_thing_as_too_much", "day_18_like_a_gif_for_your_yard",
 ]
 
 [workspace.dependencies]
