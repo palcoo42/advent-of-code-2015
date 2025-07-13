@@ -1,0 +1,8 @@
+[package]
+name = "day_17_no_such_thing_as_too_much"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+itertools = { workspace = true }
+puzzler = { workspace = true }

@@ -14,7 +14,10 @@ members = [
     "day_11_corporate_policy",
     "day_12_js_abacus_framework_io",
     "day_13_knights_of_the_dinner_table",
-    "day_14_reindeer_olympics", "day_15_science_for_hungry_people", "day_16_aunt_sue",
+    "day_14_reindeer_olympics",
+    "day_15_science_for_hungry_people",
+    "day_16_aunt_sue",
+    "day_17_no_such_thing_as_too_much",
 ]
 
 [workspace.dependencies]

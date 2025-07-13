@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "lldb",
             "request": "launch",
@@ -409,8 +410,230 @@
                 }
             },
             "args": [],
-             "env": {
-                "CARGO_MANIFEST_DIR": "/workspaces/codespaces-blank/advent-of-code-2015/day_11_corporate_policy"
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'day_12_js_abacus_framework_io'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=day_12_js_abacus_framework_io",
+                    "--package=day_12_js_abacus_framework_io"
+                ],
+                "filter": {
+                    "name": "day_12_js_abacus_framework_io",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'day_12_js_abacus_framework_io'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=day_12_js_abacus_framework_io",
+                    "--package=day_12_js_abacus_framework_io"
+                ],
+                "filter": {
+                    "name": "day_12_js_abacus_framework_io",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'day_13_knights_of_the_dinner_table'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=day_13_knights_of_the_dinner_table",
+                    "--package=day_13_knights_of_the_dinner_table"
+                ],
+                "filter": {
+                    "name": "day_13_knights_of_the_dinner_table",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'day_13_knights_of_the_dinner_table'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=day_13_knights_of_the_dinner_table",
+                    "--package=day_13_knights_of_the_dinner_table"
+                ],
+                "filter": {
+                    "name": "day_13_knights_of_the_dinner_table",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'day_14_reindeer_olympics'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=day_14_reindeer_olympics",
+                    "--package=day_14_reindeer_olympics"
+                ],
+                "filter": {
+                    "name": "day_14_reindeer_olympics",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'day_14_reindeer_olympics'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=day_14_reindeer_olympics",
+                    "--package=day_14_reindeer_olympics"
+                ],
+                "filter": {
+                    "name": "day_14_reindeer_olympics",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'day_15_science_for_hungry_people'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=day_15_science_for_hungry_people",
+                    "--package=day_15_science_for_hungry_people"
+                ],
+                "filter": {
+                    "name": "day_15_science_for_hungry_people",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'day_15_science_for_hungry_people'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=day_15_science_for_hungry_people",
+                    "--package=day_15_science_for_hungry_people"
+                ],
+                "filter": {
+                    "name": "day_15_science_for_hungry_people",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'day_16_aunt_sue'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=day_16_aunt_sue",
+                    "--package=day_16_aunt_sue"
+                ],
+                "filter": {
+                    "name": "day_16_aunt_sue",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'day_16_aunt_sue'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=day_16_aunt_sue",
+                    "--package=day_16_aunt_sue"
+                ],
+                "filter": {
+                    "name": "day_16_aunt_sue",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'day_17_no_such_thing_as_too_much'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=day_17_no_such_thing_as_too_much",
+                    "--package=day_17_no_such_thing_as_too_much"
+                ],
+                "filter": {
+                    "name": "day_17_no_such_thing_as_too_much",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'day_17_no_such_thing_as_too_much'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=day_17_no_such_thing_as_too_much",
+                    "--package=day_17_no_such_thing_as_too_much"
+                ],
+                "filter": {
+                    "name": "day_17_no_such_thing_as_too_much",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "env": {
+                "CARGO_MANIFEST_DIR": "/workspaces/codespaces-blank/advent-of-code-2015/day_17_no_such_thing_as_too_much"
             },
             "cwd": "${workspaceFolder}"
         }

@@ -131,6 +131,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "day_17_no_such_thing_as_too_much"
+version = "0.1.0"
+dependencies = [
+ "itertools",
+ "puzzler",
+]
+
+[[package]]
 name = "either"
 version = "1.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -181,7 +189,7 @@ dependencies = [
 [[package]]
 name = "puzzler"
 version = "0.1.0"
-source = "git+https://github.com/palcoo42/puzzler.git?branch=master#579150bc8049d4d72d06f2869c452a91b4e0dff1"
+source = "git+https://github.com/palcoo42/puzzler.git?branch=master#1dadda1999dee6f17498421c1be3c2ce5a6e5d7a"
 dependencies = [
  "regex",
 ]
