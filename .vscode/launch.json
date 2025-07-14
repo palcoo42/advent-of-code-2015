@@ -4,7 +4,6 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
         {
             "type": "lldb",
             "request": "launch",
@@ -632,8 +631,82 @@
                 }
             },
             "args": [],
-            "env": {
-                "CARGO_MANIFEST_DIR": "/workspaces/codespaces-blank/advent-of-code-2015/day_17_no_such_thing_as_too_much"
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'day_18_like_a_gif_for_your_yard'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=day_18_like_a_gif_for_your_yard",
+                    "--package=day_18_like_a_gif_for_your_yard"
+                ],
+                "filter": {
+                    "name": "day_18_like_a_gif_for_your_yard",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'day_18_like_a_gif_for_your_yard'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=day_18_like_a_gif_for_your_yard",
+                    "--package=day_18_like_a_gif_for_your_yard"
+                ],
+                "filter": {
+                    "name": "day_18_like_a_gif_for_your_yard",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'day_19_medicine_for_rudolph'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=day_19_medicine_for_rudolph",
+                    "--package=day_19_medicine_for_rudolph"
+                ],
+                "filter": {
+                    "name": "day_19_medicine_for_rudolph",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'day_19_medicine_for_rudolph'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=day_19_medicine_for_rudolph",
+                    "--package=day_19_medicine_for_rudolph"
+                ],
+                "filter": {
+                    "name": "day_19_medicine_for_rudolph",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+                        "env": {
+                "CARGO_MANIFEST_DIR": "/workspaces/codespaces-blank/advent-of-code-2015/day_19_medicine_for_rudolph"
             },
             "cwd": "${workspaceFolder}"
         }
