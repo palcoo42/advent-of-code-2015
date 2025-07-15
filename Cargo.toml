@@ -19,10 +19,11 @@ members = [
     "day_16_aunt_sue",
     "day_17_no_such_thing_as_too_much",
     "day_18_like_a_gif_for_your_yard",
-    "day_19_medicine_for_rudolph",
+    "day_19_medicine_for_rudolph", "day_20_infinite_elves_and_infinite_houses",
 ]
 
 [workspace.dependencies]
+divisors_fixed = { version = "0.*" }
 hex = { version = "0.*" }
 itertools = { version = "0.*" }
 md5 = { version = "0.*" }

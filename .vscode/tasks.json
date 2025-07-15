@@ -5,7 +5,7 @@
 			"type": "cargo",
 			"command": "run",
 			"args": [ "--release",
-				      "--package", "day_19_medicine_for_rudolph" ],
+				      "--package", "day_20_infinite_elves_and_infinite_houses" ],
 			"problemMatcher": [
 				"$rustc"
 			],
@@ -20,7 +20,7 @@
 			"type": "cargo",
 			"command": "test",
 			"args": [ "--release",
-				      "--package", "day_19_medicine_for_rudolph",
+				      "--package", "day_20_infinite_elves_and_infinite_houses",
 					  // "--",
 					  // "--nocapture"
 				    ],

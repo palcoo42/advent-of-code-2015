@@ -153,6 +153,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "day_20_infinite_elves_and_infinite_houses"
+version = "0.1.0"
+dependencies = [
+ "divisors_fixed",
+ "puzzler",
+]
+
+[[package]]
+name = "divisors_fixed"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9f6cb45900ce66bd90f092a3bec7a5579ed5404654fa0016f5ea7e8aec4ae708"
+
+[[package]]
 name = "either"
 version = "1.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
