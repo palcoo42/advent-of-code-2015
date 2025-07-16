@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "lldb",
             "request": "launch",
@@ -705,8 +706,82 @@
                 }
             },
             "args": [],
-                        "env": {
-                "CARGO_MANIFEST_DIR": "/workspaces/codespaces-blank/advent-of-code-2015/day_19_medicine_for_rudolph"
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'day_20_infinite_elves_and_infinite_houses'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=day_20_infinite_elves_and_infinite_houses",
+                    "--package=day_20_infinite_elves_and_infinite_houses"
+                ],
+                "filter": {
+                    "name": "day_20_infinite_elves_and_infinite_houses",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'day_20_infinite_elves_and_infinite_houses'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=day_20_infinite_elves_and_infinite_houses",
+                    "--package=day_20_infinite_elves_and_infinite_houses"
+                ],
+                "filter": {
+                    "name": "day_20_infinite_elves_and_infinite_houses",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'day_21_rpg_simulator_20XX'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=day_21_rpg_simulator_20XX",
+                    "--package=day_21_rpg_simulator_20XX"
+                ],
+                "filter": {
+                    "name": "day_21_rpg_simulator_20XX",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'day_21_rpg_simulator_20XX'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=day_21_rpg_simulator_20XX",
+                    "--package=day_21_rpg_simulator_20XX"
+                ],
+                "filter": {
+                    "name": "day_21_rpg_simulator_20XX",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "env": {
+                "CARGO_MANIFEST_DIR": "/workspaces/codespaces-blank/advent-of-code-2015/day_21_rpg_simulator_20XX"
             },
             "cwd": "${workspaceFolder}"
         }

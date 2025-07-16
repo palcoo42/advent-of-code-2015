@@ -5,7 +5,7 @@
 			"type": "cargo",
 			"command": "run",
 			"args": [ "--release",
-				      "--package", "day_04_the_ideal_stocking_stuffer" ],
+				      "--package", "day_21_rpg_simulator_20XX" ],
 			"problemMatcher": [
 				"$rustc"
 			],
@@ -20,7 +20,7 @@
 			"type": "cargo",
 			"command": "test",
 			"args": [ "--release",
-				      "--package", "day_04_the_ideal_stocking_stuffer",
+				      "--package", "day_21_rpg_simulator_20XX",
 					  // "--",
 					  // "--nocapture"
 				    ],

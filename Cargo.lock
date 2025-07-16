@@ -161,6 +161,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "day_21_rpg_simulator_20XX"
+version = "0.1.0"
+dependencies = [
+ "itertools",
+ "puzzler",
+]
+
+[[package]]
 name = "divisors_fixed"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -217,7 +225,7 @@ dependencies = [
 [[package]]
 name = "puzzler"
 version = "0.1.0"
-source = "git+https://github.com/palcoo42/puzzler.git?branch=master#1d5930820025fd95290b3d47e746879d9707fbd2"
+source = "git+https://github.com/palcoo42/puzzler.git?branch=master#aef5bfc99ed9d6b0e61a88072e76be0037ebad52"
 dependencies = [
  "regex",
 ]

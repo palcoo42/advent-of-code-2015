@@ -1,0 +1,8 @@
+[package]
+name = "day_21_rpg_simulator_20XX"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+itertools = { workspace = true }
+puzzler = { workspace = true }
