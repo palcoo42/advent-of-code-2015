@@ -187,7 +187,7 @@ impl Solution {
             // Player's turn
             let damage = std::cmp::max(player.damage.saturating_sub(boss.armor), 1);
 
-            boss.deal_damage(damage);
+            boss.receive_damage(damage);
             if !boss.is_alive() {
                 break;
             }
@@ -195,7 +195,7 @@ impl Solution {
             // Boss's turn
             let damage = std::cmp::max(boss.damage.saturating_sub(player.armor), 1);
 
-            player.deal_damage(damage);
+            player.receive_damage(damage);
             if !player.is_alive() {
                 break;
             }

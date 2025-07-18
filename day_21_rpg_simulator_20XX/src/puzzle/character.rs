@@ -10,7 +10,7 @@ impl Character {
         self.hit_points > 0
     }
 
-    pub fn deal_damage(&mut self, damage: usize) {
+    pub fn receive_damage(&mut self, damage: usize) {
         self.hit_points = self.hit_points.saturating_sub(damage);
     }
 }

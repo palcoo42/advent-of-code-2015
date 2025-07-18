@@ -169,6 +169,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "day_22_wizard_simulator_20XX"
+version = "0.1.0"
+dependencies = [
+ "puzzler",
+]
+
+[[package]]
 name = "divisors_fixed"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"

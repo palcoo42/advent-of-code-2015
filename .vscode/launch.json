@@ -780,8 +780,45 @@
                 }
             },
             "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'day_22_wizard_simulator_20XX'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=day_22_wizard_simulator_20XX",
+                    "--package=day_22_wizard_simulator_20XX"
+                ],
+                "filter": {
+                    "name": "day_22_wizard_simulator_20XX",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'day_22_wizard_simulator_20XX'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=day_22_wizard_simulator_20XX",
+                    "--package=day_22_wizard_simulator_20XX"
+                ],
+                "filter": {
+                    "name": "day_22_wizard_simulator_20XX",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
             "env": {
-                "CARGO_MANIFEST_DIR": "/workspaces/codespaces-blank/advent-of-code-2015/day_21_rpg_simulator_20XX"
+                "CARGO_MANIFEST_DIR": "/home/dev/workspace/advent-of-code-2015/day_22_wizard_simulator_20XX"
             },
             "cwd": "${workspaceFolder}"
         }
