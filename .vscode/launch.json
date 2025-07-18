@@ -817,8 +817,45 @@
                 }
             },
             "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'day_23_opening_the_turing_lock'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=day_23_opening_the_turing_lock",
+                    "--package=day_23_opening_the_turing_lock"
+                ],
+                "filter": {
+                    "name": "day_23_opening_the_turing_lock",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'day_23_opening_the_turing_lock'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=day_23_opening_the_turing_lock",
+                    "--package=day_23_opening_the_turing_lock"
+                ],
+                "filter": {
+                    "name": "day_23_opening_the_turing_lock",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
             "env": {
-                "CARGO_MANIFEST_DIR": "/home/dev/workspace/advent-of-code-2015/day_22_wizard_simulator_20XX"
+                "CARGO_MANIFEST_DIR": "/home/dev/workspace/advent-of-code-2015/day_23_opening_the_turing_lock"
             },
             "cwd": "${workspaceFolder}"
         }
