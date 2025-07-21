@@ -854,8 +854,45 @@
                 }
             },
             "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'day_24_it_hangs_in_the_balance'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=day_24_it_hangs_in_the_balance",
+                    "--package=day_24_it_hangs_in_the_balance"
+                ],
+                "filter": {
+                    "name": "day_24_it_hangs_in_the_balance",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'day_24_it_hangs_in_the_balance'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=day_24_it_hangs_in_the_balance",
+                    "--package=day_24_it_hangs_in_the_balance"
+                ],
+                "filter": {
+                    "name": "day_24_it_hangs_in_the_balance",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
             "env": {
-                "CARGO_MANIFEST_DIR": "/home/dev/workspace/advent-of-code-2015/day_23_opening_the_turing_lock"
+                "CARGO_MANIFEST_DIR": "/home/dev/workspace/advent-of-code-2015/day_24_it_hangs_in_the_balance"
             },
             "cwd": "${workspaceFolder}"
         }

@@ -1,0 +1,8 @@
+[package]
+name = "day_24_it_hangs_in_the_balance"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+itertools = { workspace = true }
+puzzler = { workspace = true }
