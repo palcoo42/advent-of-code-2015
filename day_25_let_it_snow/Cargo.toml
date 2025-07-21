@@ -1,0 +1,7 @@
+[package]
+name = "day_25_let_it_snow"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+puzzler = { workspace = true }
