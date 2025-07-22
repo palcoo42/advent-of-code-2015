@@ -20,7 +20,12 @@ members = [
     "day_17_no_such_thing_as_too_much",
     "day_18_like_a_gif_for_your_yard",
     "day_19_medicine_for_rudolph",
-    "day_20_infinite_elves_and_infinite_houses", "day_21_rpg_simulator_20XX", "day_22_wizard_simulator_20XX", "day_23_opening_the_turing_lock", "day_24_it_hangs_in_the_balance", "day_25_let_it_snow",
+    "day_20_infinite_elves_and_infinite_houses",
+    "day_21_rpg_simulator_20XX",
+    "day_22_wizard_simulator_20XX",
+    "day_23_opening_the_turing_lock",
+    "day_24_it_hangs_in_the_balance",
+    "day_25_let_it_snow",
 ]
 
 [workspace.dependencies]
