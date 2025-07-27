@@ -254,7 +254,7 @@ dependencies = [
 [[package]]
 name = "puzzler"
 version = "0.1.0"
-source = "git+https://github.com/palcoo42/puzzler.git?branch=master#aef5bfc99ed9d6b0e61a88072e76be0037ebad52"
+source = "git+https://github.com/palcoo42/puzzler.git?branch=master#f3b237fab0e83e347181ca84e5581dace7002743"
 dependencies = [
  "regex",
 ]
